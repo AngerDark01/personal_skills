@@ -1,165 +1,212 @@
 ---
 name: codebase-ontology
-description: "Build and maintain a full-detail CODEBASE.md ontology via iterative read-understand-revise loops with strict coverage gates. Use for project mapping/本体构建, onboarding, architecture analysis, root-cause debugging, and any task requiring overview + implementation-level evidence from source code."
+description: "Build and maintain a full-detail CODEBASE.md ontology via strict incremental read-update loops. No batch reading. Every read must immediately update ontology."
 ---
 
-# Codebase Ontology (Iterative, Full-Detail)
+# 核心目标 / Core Objective
 
-Maintains `CODEBASE.md` as a living ontology for both AI and humans.
-Goal: produce a document that supports fast architecture understanding and real debugging, not shallow summaries.
-
-Core requirements:
-- Iterate on real source code (`Read -> Understand -> Revise -> Cross-check`)
-- Preserve `System + Overview + Detail` layers
-- Record evidence with precise file/function references
-- Keep ontology synchronized after confirmed code changes
+构建 `CODEBASE.md` 作为**活体本体（Living Ontology）**，并强制满足：
+- **完整性**：所有源文件必须覆盖
+- **细节性**：函数签名、核心逻辑、数据流、副作用
+- **可追踪性**：每次阅读都有目的、结论、立即更新记录
+- **持续增量**：禁止“读完再写”
 
 ---
 
-## Mode Selection
+# 第一原则（新增，最高优先级）
 
-- `SCAN`: build from scratch (new project, missing ontology, or full rescan requested).
-- `UPDATE`: incrementally update existing ontology after verified changes.
+## P0 — 微循环强制执行（Mandatory Micro-Loop）
 
----
+每一次阅读（哪怕只读了一个文件的一部分）后，必须立刻更新 `CODEBASE.md`：
 
-## 1) Coverage First (must do)
-
-Do not rely on README/directory summaries alone.
-Create a source inventory first, then deep-read by runtime importance.
-
-Suggested commands:
-
-```bash
-# Full file inventory (adjust excludes per project)
-rg --files -g '!node_modules' -g '!.git' -g '!dist' -g '!build' -g '!coverage' > /tmp/codebase_files.txt
-
-# Dependency/config/entry hints
-ls -1 package.json pyproject.toml requirements.txt Cargo.toml go.mod pom.xml 2>/dev/null
-rg -n "main\\(|if __name__ == '__main__'|createApp|FastAPI\\(|express\\(|router\\.|Django|Flask|uvicorn|spring" .
+```
+读取一个目标（文件/片段）
+  -> 记录本次阅读目的（为什么读）
+  -> 提炼结论（确认/推断/冲突）
+  -> 立即写入 CODEBASE.md 对应章节
+  -> 更新 Coverage 表
+  -> 写入 Iteration Log
+  -> 再选择下一个目标
 ```
 
-Reading priority:
-1. Entry/bootstrap layer (server/app/CLI/frontend entry).
-2. Core execution paths (request handling, background jobs, persistence).
-3. Data contracts (models/schema/types/DTO).
-4. Integration boundaries (DB/cache/queue/third-party APIs/filesystem/LLM).
-5. Supporting utilities that alter runtime behavior.
+**禁止行为：**
+- 批量读完多个文件后一次性回填
+- 两阶段（先阅读、后统一输出）
+- 覆盖表不实时更新
 
-For `SCAN`, cover all business-source files except generated/vendor/build artifacts.
+只要发生阅读，就必须发生一次对应更新。
 
 ---
 
-## 2) Iterative Deep-Read Loop (must do)
+# 强制规则 / Strict Rules
 
-Run repeated loops per subsystem:
-1. `Read`: target subsystem + direct caller/callee boundaries.
-2. `Understand`: derive real control flow, data transitions, side effects, failure paths.
-3. `Revise`: immediately update ontology sections.
-4. `Cross-check`: validate assumptions against adjacent modules.
+## 规则 1 — 禁止批处理阅读
 
-Exit loop when all are true:
-- Two consecutive loops produce only minor wording clarifications.
-- Critical path call edges are closed (no obvious missing links).
-- No uncovered critical business files remain in inventory.
+❌ 错误：先扫全仓库，再统一写本体  
+✅ 正确：读 1 个目标 -> 立刻更新 -> 再读下 1 个目标
 
----
+## 规则 2 — 每次阅读必须有“目的”
 
-## 3) Ontology Structure (System + Overview + Detail)
+每次阅读前都要明确：
+- 本轮目标问题是什么？
+- 为什么读这个文件/片段？
+- 预期补齐哪个本体空白？
 
-Always keep three aligned layers:
+## 规则 3 — 每次更新必须可追溯
 
-1. **System layer**
-   - Purpose, architecture style, runtime boundaries, global constraints.
-2. **Overview layer**
-   - Module map, entry/boot process, critical end-to-end flows, major integrations.
-3. **Detail layer**
-   - Function/class signatures, input/output transforms, call edges, side effects, failure behavior, hidden assumptions.
+每轮更新都必须写 `Iteration Log`，至少包含：
+- 轮次编号
+- 阅读目标
+- 阅读目的
+- 新结论
+- 修订章节
+- 下一轮计划
 
-Consistency rules:
-- If detail changes, update overview/system conclusions.
-- If overview assumptions change, revisit affected detail sections.
+## 规则 4 — 全量覆盖不可跳过
 
----
+覆盖表中所有文件必须最终为已读。允许深度分层，但禁止未读文件。
 
-## 4) Detail Capture Standard (debug-oriented)
+## 规则 5 — 置信度标注
 
-For each critical function/class/interface capture:
-- Exact signature (name, params, return type/shape)
-- Actual behavior (not inferred from naming)
-- Input/output and structure transformations
-- Side effects (DB/cache/network/files/process/thread)
-- Failure behavior (exception, fallback, retry policy, timeout, partial write/rollback)
-- Key call edges (called by / calls)
-- Debug clues (error paths, branch guards, flags, logging points)
+每条关键结论必须带标签：
+- `(verified)` 代码直接可见
+- `(inferred)` 基于调用关系推断
+- `(partial)` 尚未闭环
+- `(conflict)` 存在矛盾待解
 
-Skip trivial boilerplate/getters/setters/generated code unless they affect behavior.
+## 规则 6 — 新证据即时修订
 
-For each critical data flow, provide step-by-step chain with `file:function` evidence.
+新证据与旧结论冲突时，必须当轮修订，不允许“后面再说”。
 
 ---
 
-## 5) Findings and Risk Model (required)
+# 产出结构（强制）
 
-Always include Findings with severity:
-- `P0`: data loss/corruption, security exposure, concurrency/transaction correctness risk
-- `P1`: user-visible wrong behavior, broken contracts/interfaces
-- `P2`: maintainability hazards likely to cause regressions
+`CODEBASE.md` 最终必须包含以下章节：
 
-Each finding must include:
-- what is wrong
-- why it is risky
-- exact evidence (`file:function`, optional line refs)
-- short trigger/reproduction hint when possible
-
----
-
-## 6) Output Contract
-
-Write to user target path. If target is a directory, write `CODEBASE.md` inside it.
-
-Required sections:
-1. `Project Overview`
-2. `System Architecture`
-3. `Module Map`
-4. `Entry Points & Bootstrapping`
-5. `Critical Data Flows`
-6. `Key Functions Index`
-7. `Call Graph — Critical Paths`
-8. `Data Models & Contracts`
-9. `External Integrations & Failure Behavior`
-10. `Findings (P0/P1/P2)`
-11. `Known Risk Areas`
-12. `Coverage Report`
-13. `Change Log`
-
-`SCAN` quality baseline:
-- At least 3 concrete end-to-end flows
-- File-level evidence in Findings
-- At least one substantive correction across iterative loops
+1. **Scope & Context**
+2. **Coverage Report**（全量文件）
+3. **Iteration Log**（逐轮增量更新轨迹）
+4. **System Architecture**
+5. **End-to-End Data Flows**（至少：任务创建->处理->持久化->前端展示）
+6. **Frontend Processing Flow**（页面状态、数据获取、渲染路径）
+7. **Backend Processing Flow**（API->服务->存储->异步流程）
+8. **Frontend-Backend Interaction Matrix**（端点、调用方、请求/响应、副作用）
+9. **File Dependency & Interaction Graph**（模块图+关键文件交互图，建议 mermaid）
+10. **Per-File Ontology Index**
+    - 文件职责
+    - 对内/对外依赖
+    - 顶层函数/类签名
+    - 核心实现思路（简述）
+11. **Risk / Conflict Register**
+12. **Change Log**
 
 ---
 
-## 7) UPDATE Mode Rules
+# 覆盖与深度模型
 
-1. Identify changed files (`git diff`/`git status`).
-2. Re-read changed files plus one-hop neighbors (imports/importers/callers/callees).
-3. If changes affect entry points/contracts/core flows, escalate to partial rescan.
-4. Apply surgical edits to affected ontology sections.
-5. Append dated `Change Log` entry including re-read scope and corrected assumptions.
+## Coverage Report 模板
 
-Do not preserve stale statements proven false by re-read evidence.
+| 文件路径 | 首次阅读轮次 | 阅读次数 | 当前深度 | 当前目的 | 遗留问题 |
+|---|---:|---:|---|---|---|
+| src/main.py | 1 | 3 | 深度完整 | API主入口梳理 | 无 |
+| ... | ... | ... | ... | ... | ... |
+
+深度状态：
+- `PENDING`
+- `浅读`（职责级）
+- `(partial)`（函数级未闭环）
+- `(conflict)`（有矛盾）
+- `深度完整`（函数级+数据流已闭环）
+
+---
+
+# 函数级捕获要求（强制）
+
+对每个非平凡函数（>3行），至少记录：
+- 签名：函数名、参数、返回
+- 主要分支与控制路径
+- 读取/写入的数据对象
+- 外部副作用（DB、文件、网络、缓存、线程）
+- 被谁调用 / 调用了谁（可推断）
 
 ---
 
-## 8) Practical Rules
+# 文件交互图要求（新增强制）
 
-- Prefer fast scan (`rg`) then targeted deep reads.
-- Mark non-verified statements explicitly as `inferred`.
-- Keep call graphs evidence-based; do not invent edges by naming intuition.
-- Prioritize usefulness for troubleshooting over concise prose.
+必须输出至少两类图：
+
+1. **模块级交互图**（frontend/backend/pipeline/storage/tools）
+2. **关键文件交互图**（例如：`main.py -> pipeline_config.py -> nodes/* -> models`）
+
+可用 mermaid，例如：
+
+```mermaid
+graph TD
+  A[app/api.ts] --> B[main.py]
+  B --> C[src/core/sop_extraction_pipeline.py]
+  C --> D[src/core/pipeline_config.py]
+  D --> E[src/core/nodes/*]
+  E --> F[src/models/database_models.py]
+```
 
 ---
+
+# 执行节拍（必须遵守）
+
+每轮固定 6 步：
+1. 选目标（带目的）
+2. 阅读（文件或片段）
+3. 提炼结论
+4. 即时更新 `CODEBASE.md`
+5. 更新覆盖表
+6. 规划下一轮
+
+**注意：第4步不能省略，也不能推迟。**
+
+---
+
+# 质量门禁（完成前检查）
+
+发布前必须同时满足：
+- [ ] Coverage 表无 `PENDING`
+- [ ] Iteration Log 连续且与覆盖更新一致
+- [ ] 有完整前后端交互矩阵
+- [ ] 有全链路数据流
+- [ ] 有文件交互图
+- [ ] 有逐文件函数签名索引
+- [ ] 所有关键结论都有置信度标签
+
+任一不满足，任务不得宣告完成。
+
+---
+
+# 失败模式与纠正
+
+若出现以下行为，必须立即纠正并回补：
+- 批量阅读后统一更新
+- 只做摘要不做函数级信息
+- 没有图或没有交互矩阵
+- 覆盖表和实际阅读不一致
+
+纠正动作：
+1. 在 Iteration Log 写明偏差
+2. 立即回补缺失章节
+3. 更新覆盖状态与结论标签
+
+---
+
+# 极简示例（正确节奏）
+
+- 第12轮：读 `src/core/nodes/import_json_to_db_node.py`（目的：确认版本切换逻辑）
+- 当轮更新：
+  - Backend Processing Flow：补“active版本切换”
+  - Per-File Ontology：补函数签名与副作用
+  - Coverage：阅读次数+1，深度由`浅读`升到`深度完整`
+  - Iteration Log：记录结论与下一轮计划
+
+这就是正确行为：**每轮都有写入，不允许只读不写。**
+
 
 ## Reference Files
 
