@@ -1,183 +1,180 @@
 # CODEBASE.md — Project Ontology
-<!-- Auto-maintained by codebase-ontology skill. Do not edit the structure, only the content. -->
-<!-- Last updated: YYYY-MM-DD | Scanned by: codebase-ontology vX -->
+<!-- Auto-maintained by codebase-ontology skill. Keep structure stable; update content only. -->
+<!-- Last updated: YYYY-MM-DD | Mode: SCAN/UPDATE -->
 
 ---
 
 ## 1. Project Overview
 
 **Name:** [project name]  
-**Purpose:** [one paragraph — what problem this solves and for whom]  
-**Tech stack:** [e.g., FastAPI + LangGraph + React + PostgreSQL + Redis]  
-**Architecture pattern:** [e.g., Layered API / Event-driven / Monorepo / Microservices]
+**Purpose:** [what problem this solves and for whom]  
+**Tech stack:** [runtime/framework/storage/integration stack]  
+**Primary architecture style:** [layered/modular/event-driven/monorepo/etc.]
 
 ---
 
-## 2. Module Map
+## 2. System Architecture
 
-> One row per top-level directory or logical module. The "Responsibility" column should be a single sentence — if you need more, the module is doing too much.
+> System layer: global structure and constraints.
 
-| Module/Path | Responsibility | Key files |
-|---|---|---|
-| `src/api/` | FastAPI route definitions and request validation | `router.py`, `schemas.py` |
-| `src/agent/` | LangGraph agent graph definition and node logic | `graph.py`, `nodes/` |
-| `src/db/` | Database models, migrations, query helpers | `models.py`, `crud.py` |
-| ... | ... | ... |
+- **Runtime boundaries:** [services/processes/apps and how they connect]
+- **Execution model:** [request/response, async jobs, event consumers]
+- **Global constraints:** [latency, consistency, tenancy, compliance, etc.]
+- **Core assumptions:** [critical invariants the system relies on]
 
 ---
 
-## 3. Entry Points & Bootstrapping
+## 3. Module Map
 
-> How the system starts. Trace from the first executed line to the point where it's "ready".
+> Overview layer: one row per top-level module.
 
-```
-[Entry point file] → [what it initializes] → [what it registers/starts]
-e.g., main.py → creates FastAPI app → registers routers → connects DB → starts uvicorn
-```
-
-**Key environment variables:**
-| Variable | Purpose | Default |
-|---|---|---|
-| `DATABASE_URL` | PostgreSQL connection string | required |
-| ... | ... | ... |
+| Module/Path | Responsibility | Key files | Notes |
+|---|---|---|---|
+| `src/api/` | [single-sentence responsibility] | `router.py`, `schemas.py` | [important coupling/constraints] |
+| ... | ... | ... | ... |
 
 ---
 
-## 4. Data Flows
+## 4. Entry Points & Bootstrapping
 
-> The most important end-to-end flows. For each flow, show every step including the function name, file, and what happens to the data.
+> Trace startup from first executed line to ready state.
 
-### Flow 1: [Name, e.g., "Fault Recommendation Request"]
-
-**Trigger:** [e.g., POST /api/recommend]  
-**Input:** [e.g., `{equipment_id: str, alarm_codes: list[str]}`]  
-**Output:** [e.g., `{recommendations: list[SOP], confidence: float}`]
-
-```
-1. api/router.py:recommend_endpoint()
-   → validates request via RecommendSchema
-   → calls agent/graph.py:run_graph(state)
-
-2. agent/graph.py:run_graph()
-   → initializes AgentState with equipment context
-   → enters LangGraph graph at node "retrieve_context"
-
-3. agent/nodes/retriever.py:retrieve_context()
-   ⚠️ GOTCHA: queries Elasticsearch with hybrid search; if ES is unavailable,
-      falls back to empty context silently — no exception raised
-   → returns top-K SOPs as Document objects
-
-4. agent/nodes/reasoner.py:generate_recommendation()
-   → calls LLM with retrieved context
-   → parses structured output via RecommendationParser
-   → ⚠️ GOTCHA: parser assumes JSON response; if LLM returns markdown,
-      falls back to raw text with confidence=0.0
-
-5. api/router.py → serializes AgentState.output → returns 200 response
+```text
+[entry file] -> [initialization] -> [registrations/connections] -> [ready]
 ```
 
-### Flow 2: [Name]
-...
+**Environment variables (key only):**
+| Variable | Purpose | Default | Failure behavior if missing |
+|---|---|---|---|
+| `DATABASE_URL` | DB connection | required | app fails at startup |
+| ... | ... | ... | ... |
 
 ---
 
-## 5. Key Functions Index
+## 5. Critical Data Flows
 
-> Only functions that are non-trivial, widely called, or likely to contain bugs. Skip boilerplate.
+> End-to-end flows with exact step evidence. Include at least 3 flows for SCAN.
+
+### Flow 1: [name]
+
+**Trigger:** [HTTP/event/cron/manual]  
+**Input:** [shape]  
+**Output:** [shape]
+
+```text
+1. path/file.ext:function()
+   -> [what data is read/validated/transformed]
+2. ...
+N. path/file.ext:function()
+   -> [response/write/publish effect]
+```
+
+**Failure path:** [timeouts/retries/fallback/partial writes]
+
+### Flow 2: [name]
+
+### Flow 3: [name]
+
+---
+
+## 6. Key Functions Index
+
+> Detail layer: critical functions/classes/interfaces only.
 
 ### `module/file.py`
 
-#### `function_name(param1: Type, param2: Type) -> ReturnType`
-**Does:** [exact description of what it actually does, not what its name implies]  
-**Side effects:** [DB writes, cache invalidation, external calls, etc. "None" if clean]  
-**Called by:** `caller_a.py:fn`, `caller_b.py:fn`  
-**Calls:** `dep_a.py:fn`, `dep_b.py:fn`  
-**⚠️ Note:** [any non-obvious behavior, edge cases, implicit assumptions]
-
-#### `another_function(param: Type) -> ReturnType`
-...
+#### `function_name(param: Type) -> ReturnType`
+**Role:** [what it actually does]  
+**Input -> Output transform:** [exact structure changes]  
+**Side effects:** [DB/cache/network/files/etc.]  
+**Failure behavior:** [throws/swallows/retries/fallback]  
+**Called by:** `a.py:fn`, `b.py:fn`  
+**Calls:** `c.py:fn`, `d.py:fn`  
+**Debug clues:** [logs/error codes/branch flags]  
+**⚠️ Notes:** [hidden assumptions/order sensitivity]
 
 ---
 
-## 6. Call Graph — Critical Paths
+## 7. Call Graph — Critical Paths
 
-> Only the edges that matter for understanding the system. Format as indented tree or adjacency list.
+> Evidence-based edges only (no guessed links).
 
-```
-# Request handling spine
-router.py:endpoint()
-  └── service.py:handle()
-        ├── db/crud.py:get_item()
-        │     └── db/session.py:get_db()  ← context manager, auto-commits
-        └── agent/graph.py:run()
-              ├── nodes/retriever.py:retrieve()
-              └── nodes/reasoner.py:reason()
-
-# Background jobs
-scheduler.py:run_jobs()
-  └── jobs/sync.py:sync_equipment()
-        └── external/api_client.py:fetch_updates()
-              ⚠️ no retry logic — single timeout failure aborts full sync
+```text
+entry.py:start()
+  -> api/router.py:handle_request()
+      -> service/core.py:execute()
+          -> db/repo.py:save()
+          -> external/client.py:call()
 ```
 
 ---
 
-## 7. External Dependencies & Integrations
+## 8. Data Models & Contracts
 
-| Dependency | Purpose | Where used | Notes |
-|---|---|---|---|
-| `elasticsearch-py` | Vector + keyword search | `retrieval/es_client.py` | Index names in `.env` |
-| `langchain-core` | LLM abstraction, prompt templates | `agent/` | |
-| `langgraph` | Agent state machine | `agent/graph.py` | |
-| ... | | | |
-
-**External services:**
-| Service | Purpose | Failure behavior |
-|---|---|---|
-| Elasticsearch | SOP retrieval | Silent empty results (⚠️ see Flow 1) |
-| PostgreSQL | Persistent storage | Hard crash on startup if unavailable |
-| ... | | |
-
----
-
-## 8. Known Risk Areas ⚠️
-
-> Places where bugs are most likely to hide. Populated during scan and updated over time.
-
-- **`agent/nodes/retriever.py`** — Silent fallback on ES failure means broken retrieval looks like "no relevant SOPs found" rather than an error. Easy to miss in testing.
-- **`db/crud.py:bulk_insert()`** — No transaction batching; large imports can leave partial state if interrupted mid-way.
-- [Add more as discovered]
-
----
-
-## 9. Data Models
-
-> Key data structures that flow through the system.
+> Core models/types that flow through critical paths.
 
 ```python
-# AgentState — the main state object passed through the LangGraph graph
-class AgentState(TypedDict):
-    equipment_id: str
-    alarm_codes: list[str]
-    retrieved_docs: list[Document]   # populated by retriever node
-    recommendation: str | None        # populated by reasoner node
-    confidence: float                 # 0.0 if parsing failed
-    error: str | None                 # set on any node failure
-
-# SOP — retrieved knowledge unit
-class Document(BaseModel):
+class ExampleModel(TypedDict):
     id: str
-    content: str
-    source: str        # ES index + doc_id
-    score: float       # retrieval relevance score
+    status: str
 ```
+
+- Contract notes: [versioning, optional/required fields, compatibility assumptions]
 
 ---
 
-## 10. Change Log
+## 9. External Integrations & Failure Behavior
 
-> Append-only. Each entry added after a confirmed feature or bugfix.
+| Integration | Purpose | Where used | Failure behavior | Retry/Timeout |
+|---|---|---|---|---|
+| PostgreSQL | persistence | `db/` | startup fails if unavailable | reconnect policy ... |
+| ... | ... | ... | ... | ... |
 
-### YYYY-MM-DD — Initial scan
-- Full project scanned and ontology created
-- X modules, Y functions, Z data flows documented
+---
+
+## 10. Findings (P0/P1/P2)
+
+### P0
+- **[title]**
+  - Evidence: `path/file.py:function` [optional line]
+  - Risk: [why this can cause severe impact]
+  - Trigger: [minimal repro condition]
+
+### P1
+- ...
+
+### P2
+- ...
+
+---
+
+## 11. Known Risk Areas
+
+- **`path/file.py`** — [risk summary + why it is brittle]
+- ...
+
+---
+
+## 12. Coverage Report
+
+- Inventory source: `/tmp/codebase_files.txt` (or equivalent)
+- Files reviewed deeply: [count + major directories]
+- Files skimmed: [count + rationale]
+- Excluded files: [generated/vendor/build artifacts]
+- Uncovered critical files (if any): [path + reason]
+- Iteration summary:
+  - Loop 1: [what was learned]
+  - Loop 2: [what was corrected]
+  - Loop N: [stabilization note]
+
+---
+
+## 13. Change Log
+
+### YYYY-MM-DD — [initial scan or update summary]
+- Mode: `SCAN` / `UPDATE`
+- Re-read scope: [paths/modules]
+- Modified ontology sections: [section names]
+- Added/changed/removed functions/contracts/flows: [short bullets]
+- Corrected assumptions: [what changed and why]
+
