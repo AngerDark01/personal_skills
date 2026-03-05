@@ -44,7 +44,7 @@ curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/sc
 
 # 安装某一分类下的所有 skill
 curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
-  | bash -s -- --category code-development
+  | bash -s -- --category planning
 ```
 
 ---
@@ -57,37 +57,57 @@ curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/sc
 |---|---|---|---|
 | [codebase-ontology](./skills/code-development/codebase-ontology/) | 扫描项目，生成并维护持久化的 `CODEBASE.md`：模块图、数据流全链路、函数实现、调用关系、⚠️ 风险点。解决 AI 上下文窗口盲区问题。 | `scan the project` / `build codebase map` / `update ontology` | `bash -s -- codebase-ontology` |
 
-> 更多分类持续添加中，参见下方**分类规划**。
+### 📋 Planning — 项目规划 + 原子化实现
+
+| Skill | 功能简介 | 触发词 | 安装命令 |
+|---|---|---|---|
+| [brainstorming](./skills/planning/brainstorming/) | 硬封锁所有实现，直到设计被批准。一次一问，提出 2-3 个方案供选择，逐段获得确认，最终输出设计文档并移交 writing-plans。 | `let's plan this` / `I want to build` / `design this feature` | `bash -s -- brainstorming` |
+| [writing-plans](./skills/planning/writing-plans/) | 把批准的设计拆成 2-5 分钟原子任务，含完整代码片段、精确文件路径、TDD 验证命令。保存到 `docs/plans/`。 | `write a plan` / `break this into tasks` / `create implementation plan` | `bash -s -- writing-plans` |
+| [subagent-driven-development](./skills/planning/subagent-driven-development/) | 每个任务派独立 subagent 执行，完成后两阶段 review（spec 合规 → 代码质量），过了才继续。高质量快速迭代。 | `execute the plan with subagents` / `run subagent-driven dev` | `bash -s -- subagent-driven-development` |
+| [executing-plans](./skills/planning/executing-plans/) | 批量执行计划，每组任务后暂停等待人工 review。适合需要人工介入检查点的场景。 | `execute this plan` / `run the plan` / `implement from the plan` | `bash -s -- executing-plans` |
+
+### 🔍 Code Review — 代码审查
+
+| Skill | 功能简介 | 触发词 | 安装命令 |
+|---|---|---|---|
+| [requesting-code-review](./skills/code-review/requesting-code-review/) | 派遣 code-reviewer subagent 在问题扩散前发现它。subagent-driven-development 每任务后强制触发，合并前必须执行。含完整的 reviewer 提示模板。 | `request code review` / `review this code` / `code review` | `bash -s -- requesting-code-review` |
+| [receiving-code-review](./skills/code-review/receiving-code-review/) | 处理 review 反馈的协议：先验证再实现，不懂先问，有理由可以反驳。禁止"Great point!"式的表演性同意。 | `process code review` / `I got review feedback` / `responding to review` | `bash -s -- receiving-code-review` |
+
+### 🐛 Debugging — 调试
+
+| Skill | 功能简介 | 触发词 | 安装命令 |
+|---|---|---|---|
+| [systematic-debugging](./skills/debugging/systematic-debugging/) | 四阶段强制 debug 流程：根因调查 → 模式分析 → 假设验证 → 实现。铁律：没有根因不许修 bug。失败 3 次后质疑架构。含 `root-cause-tracing.md` 和 `defense-in-depth.md`。 | `debug this` / `fix this bug` / `tests are failing` / `something's broken` | `bash -s -- systematic-debugging` |
 
 ---
 
-### 🔗 推荐配套：obra/superpowers
+## 🔀 推荐工作流
 
-以下 skill 来自 [obra/superpowers](https://github.com/obra/superpowers)，是经过社区验证的完整开发流水线，**直接通过 Claude Code 插件安装，无需复制进本仓库**：
+完整开发流水线（所有 skill 协同）：
 
 ```
-brainstorming          需求探索 → 设计方案 → 保存设计文档
-writing-plans          把设计拆成 2-5 分钟原子任务
-subagent-driven-dev    每任务派独立 subagent，两阶段 review
-test-driven-development RED-GREEN-REFACTOR 强制执行
-systematic-debugging   4 阶段根因定位
-requesting-code-review 任务间触发 code review
-finishing-a-branch     收尾：验证测试 → PR/merge 选项
-```
-
-安装 superpowers：
-```bash
-/plugin marketplace add obra/superpowers-marketplace
-/plugin install superpowers@superpowers-marketplace
-```
-
-**推荐工作流（本仓库 skill + superpowers 组合）：**
-```
-[新项目] codebase-ontology SCAN
-    ↓
-brainstorming → writing-plans → subagent-driven-development
-    ↓
-[功能确认] codebase-ontology UPDATE
+1. [新项目/功能启动]
+   codebase-ontology SCAN      ← 了解项目全貌
+         ↓
+2. [设计阶段]
+   brainstorming               ← 探索需求，设计方案，禁止提前动手
+         ↓
+3. [任务规划]
+   writing-plans               ← 拆成 2-5 分钟原子任务，TDD
+         ↓
+4. [执行阶段（选一）]
+   subagent-driven-development ← 每任务独立 subagent + 双重 review（推荐）
+   executing-plans             ← 批量执行 + 人工检查点
+         ↓
+5. [每任务完成后]
+   requesting-code-review      ← 强制 review，发现问题早
+   receiving-code-review       ← 处理反馈，技术验证优先
+         ↓
+6. [遇到 bug]
+   systematic-debugging        ← 根因优先，禁止猜测式修复
+         ↓
+7. [功能确认后]
+   codebase-ontology UPDATE    ← 同步项目地图
 ```
 
 ---
@@ -97,31 +117,29 @@ brainstorming → writing-plans → subagent-driven-development
 ### 方式一：一行命令（推荐）
 
 ```bash
-# 全局安装（所有项目可用）
+# 安装单个 skill（全局）
 curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
-  | bash -s -- codebase-ontology
+  | bash -s -- systematic-debugging
 
-# 仅当前项目
+# 安装整个分类
 curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
-  | bash -s -- codebase-ontology --project
+  | bash -s -- --category planning
+
+# 安装全部
+curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
+  | bash -s -- --all
 ```
 
-### 方式二：Claude Code 插件
-
-```bash
-/plugin add AngerDark01/personal_skills/skills/code-development/codebase-ontology
-```
-
-### 方式三：手动克隆
+### 方式二：手动克隆
 
 ```bash
 git clone https://github.com/AngerDark01/personal_skills.git
 
-# 全局
-cp -r personal_skills/skills/code-development/codebase-ontology ~/.claude/skills/
+# 安装指定 skill（全局）
+cp -r personal_skills/skills/debugging/systematic-debugging ~/.claude/skills/
 
-# 当前项目
-cp -r personal_skills/skills/code-development/codebase-ontology .claude/skills/
+# 安装指定 skill（当前项目）
+cp -r personal_skills/skills/debugging/systematic-debugging .claude/skills/
 ```
 
 详细安装说明（各平台路径、卸载方法）见 [INSTALL.md](./INSTALL.md)。
@@ -140,21 +158,27 @@ personal_skills/
 └── skills/
     ├── _template/                         ← 新建 skill 用这个模板
     │   └── SKILL.md
-    └── code-development/                  ← 分类：代码开发
-        └── codebase-ontology/
+    ├── code-development/
+    │   └── codebase-ontology/
+    │       ├── SKILL.md
+    │       └── references/
+    │           └── CODEBASE_TEMPLATE.md
+    ├── planning/
+    │   ├── brainstorming/SKILL.md
+    │   ├── writing-plans/SKILL.md
+    │   ├── subagent-driven-development/SKILL.md
+    │   └── executing-plans/SKILL.md
+    ├── code-review/
+    │   ├── requesting-code-review/
+    │   │   ├── SKILL.md
+    │   │   └── code-reviewer.md           ← reviewer subagent 提示模板
+    │   └── receiving-code-review/SKILL.md
+    └── debugging/
+        └── systematic-debugging/
             ├── SKILL.md
-            └── references/
-                └── CODEBASE_TEMPLATE.md
+            ├── root-cause-tracing.md      ← 调用链回溯技术
+            └── defense-in-depth.md        ← 多层防御验证技术
 ```
-
-### 分类规划（持续扩展）
-
-| 目录 | 用途 |
-|---|---|
-| `code-development/` | 代码分析、项目理解、代码质量 |
-| `planning/` | *(待添加)* 项目规划、任务拆解 |
-| `debugging/` | *(待添加)* 调试、根因分析 |
-| `writing/` | *(待添加)* 文档、commit、changelog |
 
 ---
 
@@ -181,5 +205,5 @@ cp -r skills/_template skills/<分类>/<skill-name>
 
 - [Agent Skills 官方文档](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
 - [Skill 编写最佳实践](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
-- [obra/superpowers](https://github.com/obra/superpowers) — 强烈推荐的配套开发流水线
+- [obra/superpowers](https://github.com/obra/superpowers) — 原始 skill 来源，强烈推荐
 - [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) — 社区 skill 索引（500+）

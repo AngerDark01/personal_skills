@@ -15,6 +15,9 @@ repo: "AngerDark01/personal_skills"
 install_script: "https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh"
 
 skills:
+
+  # ── Code Development ──────────────────────────────────────────────────────
+
   - name: codebase-ontology
     category: code-development
     status: stable
@@ -37,3 +40,150 @@ skills:
       - architecture
       - onboarding
     install_cmd: "bash -s -- codebase-ontology"
+
+  # ── Planning ──────────────────────────────────────────────────────────────
+
+  - name: brainstorming
+    category: planning
+    status: stable
+    description: >
+      Hard-gates all implementation until a design is approved. Explores context,
+      asks one clarifying question at a time, proposes 2-3 approaches with trade-offs,
+      gains incremental approval, then documents the design and hands off to writing-plans.
+      Prevents wasted effort from unexamined assumptions.
+    path: skills/planning/brainstorming
+    skill_file: skills/planning/brainstorming/SKILL.md
+    triggers:
+      - "let's plan this"
+      - "I want to build"
+      - "design this feature"
+      - "let's think through"
+      - "brainstorm"
+    tags:
+      - planning
+      - design
+      - architecture
+      - workflow
+    install_cmd: "bash -s -- brainstorming"
+
+  - name: writing-plans
+    category: planning
+    status: stable
+    description: >
+      Breaks an approved design into atomic 2-5 minute implementation tasks following TDD.
+      Each task includes exact file paths, complete code snippets, and precise verification
+      commands. Produces a plan file in docs/plans/ and offers subagent or batch execution.
+    path: skills/planning/writing-plans
+    skill_file: skills/planning/writing-plans/SKILL.md
+    triggers:
+      - "write a plan"
+      - "break this into tasks"
+      - "create implementation plan"
+    tags:
+      - planning
+      - tdd
+      - workflow
+    install_cmd: "bash -s -- writing-plans"
+
+  - name: subagent-driven-development
+    category: planning
+    status: stable
+    description: >
+      Executes an implementation plan by dispatching a fresh subagent per task,
+      followed by two-stage review (spec compliance then code quality) after each task.
+      Produces high-quality reviewed code with fast iteration inside the current session.
+    path: skills/planning/subagent-driven-development
+    skill_file: skills/planning/subagent-driven-development/SKILL.md
+    triggers:
+      - "execute the plan with subagents"
+      - "run subagent-driven dev"
+      - "implement with subagents"
+    tags:
+      - planning
+      - implementation
+      - workflow
+      - subagents
+    install_cmd: "bash -s -- subagent-driven-development"
+
+  - name: executing-plans
+    category: planning
+    status: stable
+    description: >
+      Batch execution of a written implementation plan with human review checkpoints
+      between task groups. Alternative to subagent-driven-development for when you want
+      explicit human-in-the-loop control in a separate session.
+    path: skills/planning/executing-plans
+    skill_file: skills/planning/executing-plans/SKILL.md
+    triggers:
+      - "execute this plan"
+      - "run the plan"
+      - "implement from the plan"
+    tags:
+      - planning
+      - implementation
+      - workflow
+    install_cmd: "bash -s -- executing-plans"
+
+  # ── Code Review ───────────────────────────────────────────────────────────
+
+  - name: requesting-code-review
+    category: code-review
+    status: stable
+    description: >
+      Dispatches a code-reviewer subagent to catch issues before they cascade.
+      Mandatory after each task in subagent-driven development, after major features,
+      and before merging. Includes the code-reviewer.md subagent prompt template.
+    path: skills/code-review/requesting-code-review
+    skill_file: skills/code-review/requesting-code-review/SKILL.md
+    triggers:
+      - "request code review"
+      - "review this code"
+      - "check my implementation"
+      - "code review"
+    tags:
+      - code-review
+      - quality
+      - workflow
+    install_cmd: "bash -s -- requesting-code-review"
+
+  - name: receiving-code-review
+    category: code-review
+    status: stable
+    description: >
+      Protocol for processing code review feedback with technical rigor.
+      Verify before implementing, ask before assuming, push back when wrong.
+      Eliminates performative agreement and ensures correct, verified implementation.
+    path: skills/code-review/receiving-code-review
+    skill_file: skills/code-review/receiving-code-review/SKILL.md
+    triggers:
+      - "process code review"
+      - "I got review feedback"
+      - "responding to review"
+    tags:
+      - code-review
+      - quality
+    install_cmd: "bash -s -- receiving-code-review"
+
+  # ── Debugging ─────────────────────────────────────────────────────────────
+
+  - name: systematic-debugging
+    category: debugging
+    status: stable
+    description: >
+      Four-phase mandatory debugging process: root cause investigation, pattern analysis,
+      hypothesis testing, and implementation. Core rule: no fixes without root cause.
+      After 3 failed fixes, question the architecture. Includes root-cause-tracing.md
+      and defense-in-depth.md companion techniques.
+    path: skills/debugging/systematic-debugging
+    skill_file: skills/debugging/systematic-debugging/SKILL.md
+    triggers:
+      - "debug this"
+      - "fix this bug"
+      - "tests are failing"
+      - "something's broken"
+      - "why is this not working"
+    tags:
+      - debugging
+      - root-cause
+      - quality
+    install_cmd: "bash -s -- systematic-debugging"
