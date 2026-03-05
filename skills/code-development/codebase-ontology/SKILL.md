@@ -1,156 +1,167 @@
 ---
 name: codebase-ontology
-description: "Builds and maintains a persistent CODEBASE.md ontology file that maps a project's full structure, data flows, function implementations, and call relationships. Use this skill whenever: (1) starting work on an unfamiliar codebase and needing to understand it quickly, (2) onboarding to a new project, (3) a user says \"scan the project\", \"build the codebase map\", \"initialize ontology\", or \"read the project\" — trigger a full scan; (4) after completing a feature or bugfix and a user says \"update the ontology\", \"sync the map\", \"I confirmed this feature works\" — trigger an incremental update. Always use this skill when context about the codebase structure would help avoid bugs from incomplete understanding."
+description: "Build and maintain a full-detail CODEBASE.md ontology via iterative read-understand-revise loops with strict coverage gates. Use for project mapping/本体构建, onboarding, architecture analysis, root-cause debugging, and any task requiring overview + implementation-level evidence from source code."
 ---
 
-# Codebase Ontology Skill
+# Codebase Ontology (Iterative, Full-Detail)
 
-Maintains `CODEBASE.md` — a persistent, human- and AI-readable ontology of the project. The goal is to capture everything an engineer needs to understand the project without reading every file: architecture, data flows, key function implementations, call graphs, and known gotchas.
+Maintains `CODEBASE.md` as a living ontology for both AI and humans.
+Goal: produce a document that supports fast architecture understanding and real debugging, not shallow summaries.
 
-This solves a critical problem: AI context windows are limited, so reading source files sequentially causes missed relationships and hidden bugs. `CODEBASE.md` acts as a pre-digested global map that any agent or human can load instantly.
-
-The skill has two modes. Read the user's intent carefully to decide which to run.
+Core requirements:
+- Iterate on real source code (`Read -> Understand -> Revise -> Cross-check`)
+- Preserve `System + Overview + Detail` layers
+- Record evidence with precise file/function references
+- Keep ontology synchronized after confirmed code changes
 
 ---
 
-## Mode 1: SCAN — Build ontology from scratch
+## Mode Selection
 
-**When to use:** New project, `CODEBASE.md` doesn't exist, or user asks for a full rescan.
+- `SCAN`: build from scratch (new project, missing ontology, or full rescan requested).
+- `UPDATE`: incrementally update existing ontology after verified changes.
 
-### Step 1: Discover project shape
+---
 
-Run these in parallel to form a first impression before reading any code:
+## 1) Coverage First (must do)
+
+Do not rely on README/directory summaries alone.
+Create a source inventory first, then deep-read by runtime importance.
+
+Suggested commands:
 
 ```bash
-# Project root structure
-find . -maxdepth 3 -not -path '*/node_modules/*' -not -path '*/.git/*' \
-       -not -path '*/__pycache__/*' -not -path '*/.venv/*' | sort
+# Full file inventory (adjust excludes per project)
+rg --files -g '!node_modules' -g '!.git' -g '!dist' -g '!build' -g '!coverage' > /tmp/codebase_files.txt
 
-# Dependency files — reveals tech stack immediately
-cat package.json 2>/dev/null || cat pyproject.toml 2>/dev/null || \
-  cat requirements.txt 2>/dev/null || cat Cargo.toml 2>/dev/null
-
-# Existing docs
-ls README.md docs/ 2>/dev/null && cat README.md 2>/dev/null | head -80
-
-# Config files — reveals deployment, env, external services
-ls .env.example docker-compose.yml *.config.* tsconfig.json 2>/dev/null
+# Dependency/config/entry hints
+ls -1 package.json pyproject.toml requirements.txt Cargo.toml go.mod pom.xml 2>/dev/null
+rg -n "main\\(|if __name__ == '__main__'|createApp|FastAPI\\(|express\\(|router\\.|Django|Flask|uvicorn|spring" .
 ```
 
-### Step 2: Dispatch specialist subagents in parallel
+Reading priority:
+1. Entry/bootstrap layer (server/app/CLI/frontend entry).
+2. Core execution paths (request handling, background jobs, persistence).
+3. Data contracts (models/schema/types/DTO).
+4. Integration boundaries (DB/cache/queue/third-party APIs/filesystem/LLM).
+5. Supporting utilities that alter runtime behavior.
 
-Spawn all three simultaneously. Each agent has a focused, fresh context.
-
-**Agent A — Architecture Explorer:**
-```
-Read the project's top-level directories and entry point files.
-Focus on:
-- What is the overall architecture? (monorepo, microservice, MVC, layered?)
-- What are the main modules/packages and their single-sentence responsibility?
-- What are the entry points (main.py, index.ts, app.py, server.go, etc.)?
-- What framework patterns are used? (FastAPI routers, LangGraph nodes, React components, etc.)
-Report as structured notes, not prose.
-```
-
-**Agent B — Data Flow Tracer:**
-```
-Trace how data moves through the system for the 2-3 most important operations
-(e.g., a user request → response, a background job, a DB write).
-Focus on:
-- What triggers a flow? (HTTP request, event, schedule)
-- Which functions/modules does data pass through in order?
-- Where is state mutated or persisted?
-- What are the critical transformation points?
-- Where could data be lost, truncated, or mishandled? (flag these explicitly)
-Report each flow as a numbered sequence: Step 1 → Step 2 → Step 3...
-```
-
-**Agent C — Function & Interface Analyst:**
-```
-Identify the most important functions, classes, and interfaces in the codebase.
-For each, capture:
-- Full signature (name, params, return type)
-- One-sentence description of what it actually does
-- Non-obvious implementation details or side effects
-- What calls it / what it calls (key edges only)
-Focus on: public APIs, core business logic, anything that many other things depend on.
-Skip: trivial getters/setters, boilerplate, generated code.
-```
-
-### Step 3: Synthesize into CODEBASE.md
-
-After all three agents complete, write `CODEBASE.md` using the template in `references/CODEBASE_TEMPLATE.md`.
-
-**Rules for writing:**
-- Be specific, not vague. "Handles auth" is bad. "Validates JWT in `auth/middleware.py:validate_token()`, extracts `user_id` and `roles`, raises `AuthError` on expiry" is good.
-- Flag known risk areas with `⚠️` — places where bugs are likely to hide due to complexity or implicit assumptions.
-- Keep function signatures exact. An AI reading this should be able to call the function correctly without opening the file.
-- For data flows, show the full chain. Don't summarize away the middle steps.
-- Total file should be readable in ~5 minutes but comprehensive enough to replace file-by-file reading.
-
-Announce when done: "✅ CODEBASE.md created. X modules, Y key functions, Z data flows documented."
+For `SCAN`, cover all business-source files except generated/vendor/build artifacts.
 
 ---
 
-## Mode 2: UPDATE — Sync ontology after code changes
+## 2) Iterative Deep-Read Loop (must do)
 
-**When to use:** User confirms a feature is complete, a bugfix is verified, or explicitly asks to update the ontology.
+Run repeated loops per subsystem:
+1. `Read`: target subsystem + direct caller/callee boundaries.
+2. `Understand`: derive real control flow, data transitions, side effects, failure paths.
+3. `Revise`: immediately update ontology sections.
+4. `Cross-check`: validate assumptions against adjacent modules.
 
-### Step 1: Identify what changed
-
-```bash
-# What files were modified since last ontology update
-git diff --name-only HEAD~1 2>/dev/null || git status --short
-
-# See the actual changes
-git diff HEAD~1 -- $(git diff --name-only HEAD~1) 2>/dev/null | head -300
-```
-
-If no git history, ask the user: "Which files did you change in this session?"
-
-### Step 2: Targeted re-analysis
-
-Read only the changed files and their immediate neighbors (files that import them or are imported by them).
-
-For each changed file:
-- What functions were added, modified, or removed?
-- Did any data flows change? (new parameters, changed return types, new side effects)
-- Did any call relationships change?
-- Are there new ⚠️ risk areas?
-
-### Step 3: Surgical update to CODEBASE.md
-
-**Do NOT rewrite the whole file.** Make targeted edits:
-
-1. Open `CODEBASE.md`
-2. Locate the affected sections
-3. Update only those sections
-4. Append to the `## Change Log` section:
-
-```
-### YYYY-MM-DD — [brief description of change]
-- Modified: `module/file.py` — [what changed]
-- Added: `new_function(param) -> return_type` — [what it does]
-- Data flow updated: [which flow and what changed]
-- Removed: [anything deleted]
-```
-
-Announce: "✅ CODEBASE.md updated. Changed sections: [list]. Log entry added."
+Exit loop when all are true:
+- Two consecutive loops produce only minor wording clarifications.
+- Critical path call edges are closed (no obvious missing links).
+- No uncovered critical business files remain in inventory.
 
 ---
 
-## Important principles
+## 3) Ontology Structure (System + Overview + Detail)
 
-**Depth over breadth for critical paths.** It's better to deeply document the 10 most important functions than to shallowly mention 100. Ask yourself: "If a bug existed here, would reading this entry make it obvious?"
+Always keep three aligned layers:
 
-**Flag hidden complexity.** If a function has non-obvious behavior — implicit state, order-dependent side effects, silent failure modes — document it. This is the main value over reading source directly.
+1. **System layer**
+   - Purpose, architecture style, runtime boundaries, global constraints.
+2. **Overview layer**
+   - Module map, entry/boot process, critical end-to-end flows, major integrations.
+3. **Detail layer**
+   - Function/class signatures, input/output transforms, call edges, side effects, failure behavior, hidden assumptions.
 
-**Keep call graphs accurate.** Stale call graphs are worse than no call graphs. Only document edges you verified by reading the code, not inferred by name.
-
-**The ontology is a living document.** It should lag behind code changes by at most one confirmed feature. Remind the user after significant changes: "Don't forget to run an ontology update after you confirm this feature."
+Consistency rules:
+- If detail changes, update overview/system conclusions.
+- If overview assumptions change, revisit affected detail sections.
 
 ---
 
-## Reference files
+## 4) Detail Capture Standard (debug-oriented)
 
-- `references/CODEBASE_TEMPLATE.md` — The exact template to use when writing CODEBASE.md
+For each critical function/class/interface capture:
+- Exact signature (name, params, return type/shape)
+- Actual behavior (not inferred from naming)
+- Input/output and structure transformations
+- Side effects (DB/cache/network/files/process/thread)
+- Failure behavior (exception, fallback, retry policy, timeout, partial write/rollback)
+- Key call edges (called by / calls)
+- Debug clues (error paths, branch guards, flags, logging points)
+
+Skip trivial boilerplate/getters/setters/generated code unless they affect behavior.
+
+For each critical data flow, provide step-by-step chain with `file:function` evidence.
+
+---
+
+## 5) Findings and Risk Model (required)
+
+Always include Findings with severity:
+- `P0`: data loss/corruption, security exposure, concurrency/transaction correctness risk
+- `P1`: user-visible wrong behavior, broken contracts/interfaces
+- `P2`: maintainability hazards likely to cause regressions
+
+Each finding must include:
+- what is wrong
+- why it is risky
+- exact evidence (`file:function`, optional line refs)
+- short trigger/reproduction hint when possible
+
+---
+
+## 6) Output Contract
+
+Write to user target path. If target is a directory, write `CODEBASE.md` inside it.
+
+Required sections:
+1. `Project Overview`
+2. `System Architecture`
+3. `Module Map`
+4. `Entry Points & Bootstrapping`
+5. `Critical Data Flows`
+6. `Key Functions Index`
+7. `Call Graph — Critical Paths`
+8. `Data Models & Contracts`
+9. `External Integrations & Failure Behavior`
+10. `Findings (P0/P1/P2)`
+11. `Known Risk Areas`
+12. `Coverage Report`
+13. `Change Log`
+
+`SCAN` quality baseline:
+- At least 3 concrete end-to-end flows
+- File-level evidence in Findings
+- At least one substantive correction across iterative loops
+
+---
+
+## 7) UPDATE Mode Rules
+
+1. Identify changed files (`git diff`/`git status`).
+2. Re-read changed files plus one-hop neighbors (imports/importers/callers/callees).
+3. If changes affect entry points/contracts/core flows, escalate to partial rescan.
+4. Apply surgical edits to affected ontology sections.
+5. Append dated `Change Log` entry including re-read scope and corrected assumptions.
+
+Do not preserve stale statements proven false by re-read evidence.
+
+---
+
+## 8) Practical Rules
+
+- Prefer fast scan (`rg`) then targeted deep reads.
+- Mark non-verified statements explicitly as `inferred`.
+- Keep call graphs evidence-based; do not invent edges by naming intuition.
+- Prioritize usefulness for troubleshooting over concise prose.
+
+---
+
+## Reference Files
+
+- `references/CODEBASE_TEMPLATE.md` — canonical template for writing/updating `CODEBASE.md`
+
