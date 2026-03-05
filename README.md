@@ -6,13 +6,58 @@ Skill 按需加载，只有触发时才进入上下文，不影响性能。
 
 ---
 
+## 🤖 Agent 安装指南
+
+> **如果你是 AI Agent，请阅读本节。** 按以下步骤为用户有选择地安装 skill，不要全部安装。
+
+### Step 1：发现可用 Skill
+
+读取仓库根目录的 `skills.yaml`，获取所有 skill 的元数据（名称、描述、触发词、分类）：
+
+```
+https://raw.githubusercontent.com/AngerDark01/personal_skills/main/skills.yaml
+```
+
+或直接查看下方的 **Skill 目录**表格。
+
+### Step 2：判断是否需要安装
+
+对照每个 skill 的**触发词**，判断当前用户的工作场景是否需要该 skill：
+
+- 如果用户说了某个触发词，或任务明显属于该 skill 的功能范围 → 安装
+- 否则跳过，不要为用户安装无关 skill
+
+### Step 3：运行安装命令
+
+```bash
+# 安装指定 skill（全局，所有项目可用）
+curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
+  | bash -s -- <skill-name>
+
+# 仅当前项目
+curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
+  | bash -s -- <skill-name> --project
+
+# 列出所有可用 skill
+curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
+  | bash -s -- --list
+
+# 安装某一分类下的所有 skill
+curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
+  | bash -s -- --category code-development
+```
+
+---
+
 ## 📦 Skill 目录
 
 ### 🔧 Code Development — 代码开发
 
-| Skill | 功能 | 触发词 |
-|---|---|---|
-| [codebase-ontology](./skills/code-development/codebase-ontology/) | 扫描项目，生成并维护持久化的 `CODEBASE.md`：模块图、数据流全链路、函数实现、调用关系、⚠️ 风险点。解决 AI 上下文窗口盲区问题。 | `scan the project` / `build codebase map` / `update ontology` |
+| Skill | 功能简介 | 触发词 | 安装命令 |
+|---|---|---|---|
+| [codebase-ontology](./skills/code-development/codebase-ontology/) | 扫描项目，生成并维护持久化的 `CODEBASE.md`：模块图、数据流全链路、函数实现、调用关系、⚠️ 风险点。解决 AI 上下文窗口盲区问题。 | `scan the project` / `build codebase map` / `update ontology` | `bash -s -- codebase-ontology` |
+
+> 更多分类持续添加中，参见下方**分类规划**。
 
 ---
 
@@ -32,7 +77,6 @@ finishing-a-branch     收尾：验证测试 → PR/merge 选项
 
 安装 superpowers：
 ```bash
-# 在 Claude Code 终端里运行
 /plugin marketplace add obra/superpowers-marketplace
 /plugin install superpowers@superpowers-marketplace
 ```
@@ -48,7 +92,7 @@ brainstorming → writing-plans → subagent-driven-development
 
 ---
 
-## 🚀 安装方式
+## 🚀 人工安装方式
 
 ### 方式一：一行命令（推荐）
 
@@ -80,6 +124,8 @@ cp -r personal_skills/skills/code-development/codebase-ontology ~/.claude/skills
 cp -r personal_skills/skills/code-development/codebase-ontology .claude/skills/
 ```
 
+详细安装说明（各平台路径、卸载方法）见 [INSTALL.md](./INSTALL.md)。
+
 ---
 
 ## 📁 仓库结构
@@ -88,6 +134,7 @@ cp -r personal_skills/skills/code-development/codebase-ontology .claude/skills/
 personal_skills/
 ├── README.md                              ← 你在这里
 ├── INSTALL.md                             ← 各平台详细安装指引
+├── skills.yaml                            ← 机器可读的 skill 注册表（Agent 读这里）
 ├── scripts/
 │   └── install.sh                         ← 自动安装脚本
 └── skills/
@@ -117,11 +164,13 @@ personal_skills/
 # 1. 复制模板
 cp -r skills/_template skills/<分类>/<skill-name>
 
-# 2. 编辑 SKILL.md（填写 name、description、instructions）
+# 2. 编辑 SKILL.md（填写 name、description、触发词、instructions）
 
-# 3. 在本 README 的目录表格加一行
+# 3. 在 skills.yaml 增加一条 skill 记录
 
-# 4. git add . && git commit && git push
+# 4. 在本 README 的目录表格加一行
+
+# 5. git add . && git commit && git push
 ```
 
 `install.sh` 会自动发现新 skill，无需修改脚本。

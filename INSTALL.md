@@ -3,8 +3,21 @@
 ## 一行安装（推荐）
 
 ```bash
+# 安装指定 skill（全局）
 curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
   | bash -s -- <skill-name>
+
+# 列出所有可用 skill
+curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
+  | bash -s -- --list
+
+# 安装某分类下所有 skill
+curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
+  | bash -s -- --category code-development
+
+# 安装全部 skill
+curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
+  | bash -s -- --all
 ```
 
 加 `--project` 仅在当前项目生效：

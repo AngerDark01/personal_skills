@@ -1,0 +1,39 @@
+# Personal Agent Skills Registry
+# Machine-readable index of all available skills.
+# Agents: read this file to discover skills, then install selectively using scripts/install.sh
+#
+# Install a skill:
+#   curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
+#     | bash -s -- <name>
+#
+# List all skills:
+#   curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
+#     | bash -s -- --list
+
+version: "1.0"
+repo: "AngerDark01/personal_skills"
+install_script: "https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh"
+
+skills:
+  - name: codebase-ontology
+    category: code-development
+    status: stable
+    description: >
+      Scans a project and builds/maintains a persistent CODEBASE.md ontology:
+      module map, end-to-end data flows, key function index, call graph, and risk areas.
+      Solves the AI context-window blind spot by providing a pre-digested global map.
+    path: skills/code-development/codebase-ontology
+    skill_file: skills/code-development/codebase-ontology/SKILL.md
+    triggers:
+      - "scan the project"
+      - "build codebase map"
+      - "initialize ontology"
+      - "read the project"
+      - "update the ontology"
+      - "sync the map"
+    tags:
+      - code-analysis
+      - documentation
+      - architecture
+      - onboarding
+    install_cmd: "bash -s -- codebase-ontology"
