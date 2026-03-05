@@ -187,3 +187,371 @@ skills:
       - root-cause
       - quality
     install_cmd: "bash -s -- systematic-debugging"
+
+  # ── Interaction Design ────────────────────────────────────────────────────
+
+  - name: interaction-flow-designer
+    category: interaction
+    status: stable
+    description: >
+      Maps user journeys into explicit state machines with ASCII flow diagrams,
+      complete state inventories, edge case lists, and TypeScript type specs.
+      Prevents missing states that become bugs. Covers entry/exit points,
+      branching conditions, error states, and browser-back behavior.
+    path: skills/interaction/interaction-flow-designer
+    skill_file: skills/interaction/interaction-flow-designer/SKILL.md
+    triggers:
+      - "design the user flow"
+      - "map out the interaction"
+      - "state machine for this feature"
+      - "how should users navigate"
+      - "design the UX flow"
+    tags:
+      - ux
+      - interaction-design
+      - state-machine
+    install_cmd: "bash -s -- interaction-flow-designer"
+
+  - name: microinteraction-designer
+    category: interaction
+    status: stable
+    description: >
+      Designs and implements micro-interactions: hover effects, loading states,
+      transitions, and feedback moments. Covers CSS animations, Framer Motion,
+      timing guidelines, and accessibility (prefers-reduced-motion).
+      GPU-only animation patterns for 60fps performance.
+    path: skills/interaction/microinteraction-designer
+    skill_file: skills/interaction/microinteraction-designer/SKILL.md
+    triggers:
+      - "add animations"
+      - "make it feel more alive"
+      - "loading states"
+      - "hover effects"
+      - "micro-interactions"
+      - "animate this"
+    tags:
+      - animation
+      - interaction-design
+      - css
+      - framer-motion
+    install_cmd: "bash -s -- microinteraction-designer"
+
+  - name: ux-heuristic-reviewer
+    category: interaction
+    status: stable
+    description: >
+      Audits UI against Nielsen's 10 usability heuristics and WCAG 2.1 AA.
+      Produces prioritized findings (Critical/Major/Minor) with specific
+      file:line references and actionable fixes. Covers all 10 heuristics
+      plus accessibility spot-check.
+    path: skills/interaction/ux-heuristic-reviewer
+    skill_file: skills/interaction/ux-heuristic-reviewer/SKILL.md
+    triggers:
+      - "review the UX"
+      - "usability audit"
+      - "check accessibility"
+      - "UX review"
+      - "is this good UX"
+      - "audit the interface"
+    tags:
+      - ux
+      - accessibility
+      - wcag
+      - usability
+    install_cmd: "bash -s -- ux-heuristic-reviewer"
+
+  # ── UI / Design System ────────────────────────────────────────────────────
+
+  - name: design-system-architect
+    category: ui
+    status: stable
+    description: >
+      Designs design system foundations: primitive tokens (color/spacing/typography/shadow),
+      semantic token layer, dark mode strategy, and component API contracts.
+      Includes CSS custom property templates, audit checklist for
+      hardcoded values, and theming architecture.
+    path: skills/ui/design-system-architect
+    skill_file: skills/ui/design-system-architect/SKILL.md
+    triggers:
+      - "design system"
+      - "design tokens"
+      - "theming"
+      - "audit our styles"
+      - "build a component library"
+      - "spacing system"
+      - "typography scale"
+    tags:
+      - design-system
+      - tokens
+      - theming
+      - css
+    install_cmd: "bash -s -- design-system-architect"
+
+  - name: ui-component-generator
+    category: ui
+    status: stable
+    description: >
+      Generates production-grade, distinctive React/Vue UI components with
+      intentional aesthetic direction. Avoids generic AI aesthetics.
+      Covers typography, color, motion, spatial composition, accessibility
+      checklist, and production readiness verification.
+    path: skills/ui/ui-component-generator
+    skill_file: skills/ui/ui-component-generator/SKILL.md
+    triggers:
+      - "build this component"
+      - "create a UI for"
+      - "generate the frontend"
+      - "design this page"
+      - "make a landing page"
+      - "build a dashboard"
+    tags:
+      - react
+      - vue
+      - ui-components
+      - accessibility
+    install_cmd: "bash -s -- ui-component-generator"
+    source: "Adapted from Anthropic frontend-design skill"
+
+  - name: figma-to-component
+    category: ui
+    status: stable
+    description: >
+      Converts Figma designs (screenshots, specs, or descriptions) into
+      production-ready React/Vue components. Extracts visual inventory,
+      maps to design tokens, determines component structure, and implements
+      pixel-faithful code with all interactive states.
+    path: skills/ui/figma-to-component
+    skill_file: skills/ui/figma-to-component/SKILL.md
+    triggers:
+      - "implement this Figma design"
+      - "convert this design to code"
+      - "build this from the mockup"
+      - "code this UI design"
+      - "implement the design spec"
+    tags:
+      - figma
+      - react
+      - design-to-code
+    install_cmd: "bash -s -- figma-to-component"
+
+  # ── Frontend Engineering ──────────────────────────────────────────────────
+
+  - name: frontend-refactor
+    category: frontend-engineering
+    status: stable
+    description: >
+      Refactors React components using composition patterns: boolean props to variants,
+      render props to children composition, custom hook extraction, prop drilling
+      elimination, and component splitting by concern. Includes smell detection
+      checklist and safe refactoring workflow.
+    path: skills/frontend-engineering/frontend-refactor
+    skill_file: skills/frontend-engineering/frontend-refactor/SKILL.md
+    triggers:
+      - "refactor this component"
+      - "too many props"
+      - "simplify this"
+      - "split this component"
+      - "extract this logic"
+      - "hooks refactor"
+    tags:
+      - react
+      - refactoring
+      - composition
+    install_cmd: "bash -s -- frontend-refactor"
+    source: "Adapted from Vercel composition-patterns skill"
+
+  - name: frontend-code-reviewer
+    category: frontend-engineering
+    status: stable
+    description: >
+      Reviews frontend code for accessibility (WCAG 2.1 AA), React quality
+      (hooks, keys, state), CSS best practices, and performance anti-patterns.
+      Produces categorized findings (Critical/Major/Minor) with file:line
+      references and specific fixes.
+    path: skills/frontend-engineering/frontend-code-reviewer
+    skill_file: skills/frontend-engineering/frontend-code-reviewer/SKILL.md
+    triggers:
+      - "review this frontend code"
+      - "check this component"
+      - "accessibility audit"
+      - "review my CSS"
+      - "frontend review"
+    tags:
+      - code-review
+      - accessibility
+      - react
+      - css
+    install_cmd: "bash -s -- frontend-code-reviewer"
+    source: "Adapted from Vercel web-design-guidelines skill"
+
+  - name: testing-generator
+    category: frontend-engineering
+    status: stable
+    description: >
+      Generates React component tests, hook tests, form tests, and async tests
+      using Vitest/Jest + React Testing Library. Tests behavior not implementation.
+      Includes MSW mocking patterns, accessibility tests with jest-axe,
+      and testing strategy by coverage tier.
+    path: skills/frontend-engineering/testing-generator
+    skill_file: skills/frontend-engineering/testing-generator/SKILL.md
+    triggers:
+      - "write tests for this"
+      - "generate unit tests"
+      - "test this component"
+      - "add tests"
+      - "write test cases"
+      - "improve test coverage"
+    tags:
+      - testing
+      - react-testing-library
+      - vitest
+      - jest
+    install_cmd: "bash -s -- testing-generator"
+    source: "Adapted from Anthropic webapp-testing skill"
+
+  # ── Performance ───────────────────────────────────────────────────────────
+
+  - name: frontend-performance-analyzer
+    category: performance
+    status: stable
+    description: >
+      Analyzes Core Web Vitals (LCP, INP, CLS), render-blocking resources,
+      and JavaScript execution. Diagnoses with Lighthouse and DevTools.
+      Covers LCP/CLS/INP root causes with specific fixes and a
+      prioritized optimization matrix.
+    path: skills/performance/frontend-performance-analyzer
+    skill_file: skills/performance/frontend-performance-analyzer/SKILL.md
+    triggers:
+      - "analyze performance"
+      - "why is this slow"
+      - "improve Web Vitals"
+      - "performance audit"
+      - "LCP is bad"
+      - "CLS issues"
+    tags:
+      - performance
+      - web-vitals
+      - lighthouse
+    install_cmd: "bash -s -- frontend-performance-analyzer"
+    source: "Adapted from Vercel react-best-practices skill"
+
+  - name: bundle-size-optimizer
+    category: performance
+    status: stable
+    description: >
+      Reduces JavaScript bundle size: heavy dependency replacement (moment→date-fns,
+      lodash→native), barrel file fixes, route/component code splitting, and
+      dynamic imports. Includes bundle analyzer setup and CI size budget enforcement.
+    path: skills/performance/bundle-size-optimizer
+    skill_file: skills/performance/bundle-size-optimizer/SKILL.md
+    triggers:
+      - "bundle is too large"
+      - "reduce bundle size"
+      - "optimize imports"
+      - "tree shaking"
+      - "code splitting"
+      - "too much JavaScript"
+    tags:
+      - performance
+      - bundle
+      - webpack
+      - vite
+    install_cmd: "bash -s -- bundle-size-optimizer"
+    source: "Adapted from Vercel react-best-practices skill"
+
+  - name: react-render-optimizer
+    category: performance
+    status: stable
+    description: >
+      Identifies and eliminates unnecessary React re-renders using React Profiler,
+      why-did-you-render, React.memo, useMemo, useCallback, state co-location,
+      and react-window for lists. Includes decision tree and profiling report template.
+    path: skills/performance/react-render-optimizer
+    skill_file: skills/performance/react-render-optimizer/SKILL.md
+    triggers:
+      - "component re-renders too much"
+      - "React is slow"
+      - "optimize re-renders"
+      - "memo"
+      - "useMemo"
+      - "useCallback"
+      - "sluggish UI"
+    tags:
+      - performance
+      - react
+      - memoization
+    install_cmd: "bash -s -- react-render-optimizer"
+    source: "Adapted from Vercel react-best-practices + composition-patterns skills"
+
+  # ── Architecture ──────────────────────────────────────────────────────────
+
+  - name: frontend-architecture-designer
+    category: architecture
+    status: stable
+    description: >
+      Designs scalable frontend folder structures (small/medium/large project tiers),
+      feature-based module organization, component hierarchy (pages/features/shared),
+      module public APIs, and dependency direction rules. Includes ESLint
+      enforcement and ADR template.
+    path: skills/architecture/frontend-architecture-designer
+    skill_file: skills/architecture/frontend-architecture-designer/SKILL.md
+    triggers:
+      - "design the architecture"
+      - "structure the project"
+      - "how should we organize this"
+      - "frontend architecture"
+      - "project structure"
+      - "modular architecture"
+    tags:
+      - architecture
+      - project-structure
+      - react
+    install_cmd: "bash -s -- frontend-architecture-designer"
+    source: "Adapted from Vercel composition-patterns skill"
+
+  - name: state-management-architect
+    category: architecture
+    status: stable
+    description: >
+      Selects and architects state management for each state category:
+      React Query for server state, Zustand for global client state,
+      React Hook Form for forms, useState/useReducer for local state.
+      Prevents over-engineering with React Redux for all state.
+    path: skills/architecture/state-management-architect
+    skill_file: skills/architecture/state-management-architect/SKILL.md
+    triggers:
+      - "state management"
+      - "too much Redux"
+      - "should I use Redux"
+      - "React Query setup"
+      - "Zustand vs Context"
+      - "how to manage state"
+    tags:
+      - architecture
+      - state-management
+      - react-query
+      - zustand
+    install_cmd: "bash -s -- state-management-architect"
+    source: "Adapted from Vercel composition-patterns skill"
+
+  - name: project-structure-manager
+    category: architecture
+    status: stable
+    description: >
+      Audits existing project structure for circular dependencies, god directories,
+      scattered domain logic, and module boundary violations. Produces a phased
+      migration plan with ESLint rules, path aliases, and naming conventions.
+    path: skills/architecture/project-structure-manager
+    skill_file: skills/architecture/project-structure-manager/SKILL.md
+    triggers:
+      - "audit project structure"
+      - "fix module boundaries"
+      - "organize the codebase"
+      - "find circular dependencies"
+      - "where should this file go"
+      - "project organization"
+    tags:
+      - architecture
+      - project-structure
+      - refactoring
+    install_cmd: "bash -s -- project-structure-manager"

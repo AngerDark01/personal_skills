@@ -57,6 +57,46 @@ curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/sc
 |---|---|---|---|
 | [codebase-ontology](./skills/code-development/codebase-ontology/) | 扫描项目，生成并维护持久化的 `CODEBASE.md`：模块图、数据流全链路、函数实现、调用关系、⚠️ 风险点。解决 AI 上下文窗口盲区问题。 | `scan the project` / `build codebase map` / `update ontology` | `bash -s -- codebase-ontology` |
 
+### 🎨 Interaction Design — 交互设计
+
+| Skill | 功能简介 | 触发词 | 安装命令 |
+|---|---|---|---|
+| [interaction-flow-designer](./skills/interaction/interaction-flow-designer/) | 把用户旅程建模为状态机：ASCII 流程图、完整状态清单、边界情况列表、TypeScript 类型规格。防止隐式状态变成 bug。 | `design the user flow` / `state machine for this feature` / `UX flow` | `bash -s -- interaction-flow-designer` |
+| [microinteraction-designer](./skills/interaction/microinteraction-designer/) | 设计并实现 hover 效果、loading 状态、页面过渡、动画反馈。含 CSS 动画代码、Framer Motion 模板、timing 规范，以及 `prefers-reduced-motion` 无障碍处理。 | `add animations` / `hover effects` / `loading states` / `micro-interactions` | `bash -s -- microinteraction-designer` |
+| [ux-heuristic-reviewer](./skills/interaction/ux-heuristic-reviewer/) | 对照 Nielsen 10 大可用性原则 + WCAG 2.1 AA 审查 UI。输出 Critical/Major/Minor 分级问题，含 file:line 定位和可操作修复方案。 | `review the UX` / `usability audit` / `check accessibility` | `bash -s -- ux-heuristic-reviewer` |
+
+### 🖼️ UI / Design System — 组件与设计系统
+
+| Skill | 功能简介 | 触发词 | 安装命令 |
+|---|---|---|---|
+| [design-system-architect](./skills/ui/design-system-architect/) | 设计三层 token 架构（primitive → semantic → component）、暗色模式策略、组件 API 规范。含完整 CSS 变量模板和 hardcoded values 审查清单。 | `design system` / `design tokens` / `theming` / `typography scale` | `bash -s -- design-system-architect` |
+| [ui-component-generator](./skills/ui/ui-component-generator/) | 生成有鲜明设计方向的生产级 React/Vue 组件。拒绝"AI 通用美学"，每次提交 BOLD 视觉方向，含排版/色彩/动效/无障碍全套规范。 | `build this component` / `make a landing page` / `build a dashboard` | `bash -s -- ui-component-generator` |
+| [figma-to-component](./skills/ui/figma-to-component/) | 把 Figma 设计（截图/规格/描述）转为生产级 React/Vue 组件。完整提取视觉清单 → 映射到 token → 确定组件结构 → 实现所有交互状态。 | `implement this Figma design` / `convert this design to code` / `build this from the mockup` | `bash -s -- figma-to-component` |
+
+### ⚙️ Frontend Engineering — 前端工程
+
+| Skill | 功能简介 | 触发词 | 安装命令 |
+|---|---|---|---|
+| [frontend-refactor](./skills/frontend-engineering/frontend-refactor/) | React 组件重构：boolean props → variants、render props → children composition、自定义 hook 提取、props drilling 消除、大组件拆分。含代码异味检测清单和安全重构流程。 | `refactor this component` / `too many props` / `split this component` | `bash -s -- frontend-refactor` |
+| [frontend-code-reviewer](./skills/frontend-engineering/frontend-code-reviewer/) | 前端代码 review：WCAG 2.1 AA 无障碍、React 最佳实践（hooks/keys/状态）、CSS 性能反模式。输出分级问题，含 file:line 定位和具体修复代码。 | `review this frontend code` / `accessibility audit` / `frontend review` | `bash -s -- frontend-code-reviewer` |
+| [testing-generator](./skills/frontend-engineering/testing-generator/) | 生成 React 组件测试、自定义 hook 测试、表单测试、异步测试（MSW mock）。测试行为而非实现，含 jest-axe 无障碍测试和测试策略覆盖层级。 | `write tests for this` / `generate unit tests` / `test this component` | `bash -s -- testing-generator` |
+
+### ⚡ Performance — 性能优化
+
+| Skill | 功能简介 | 触发词 | 安装命令 |
+|---|---|---|---|
+| [frontend-performance-analyzer](./skills/performance/frontend-performance-analyzer/) | 分析 Core Web Vitals（LCP/INP/CLS）、渲染阻塞资源和 JS 执行。用 Lighthouse + DevTools 诊断，给出 LCP/CLS/INP 根因和优先级优化矩阵。 | `analyze performance` / `improve Web Vitals` / `why is this slow` | `bash -s -- frontend-performance-analyzer` |
+| [bundle-size-optimizer](./skills/performance/bundle-size-optimizer/) | 缩减 JS bundle：替换重型依赖（moment→date-fns、lodash→native）、修复 barrel file、路由/组件级代码分割、动态导入。含 CI bundle 体积预算配置。 | `bundle is too large` / `reduce bundle size` / `code splitting` | `bash -s -- bundle-size-optimizer` |
+| [react-render-optimizer](./skills/performance/react-render-optimizer/) | 定位并消除 React 不必要重渲染：React Profiler + why-did-you-render 诊断，React.memo / useMemo / useCallback / 状态下移 / react-window 虚拟列表。含决策树和性能报告模板。 | `component re-renders too much` / `React is slow` / `optimize re-renders` | `bash -s -- react-render-optimizer` |
+
+### 🏗️ Architecture — 前端架构
+
+| Skill | 功能简介 | 触发词 | 安装命令 |
+|---|---|---|---|
+| [frontend-architecture-designer](./skills/architecture/frontend-architecture-designer/) | 设计可扩展前端目录结构（小/中/大型项目三档）、feature-based 模块化、组件层级（pages/features/shared）、模块公开 API 规范。含 ESLint 边界检查和 ADR 模板。 | `design the architecture` / `frontend architecture` / `modular architecture` | `bash -s -- frontend-architecture-designer` |
+| [state-management-architect](./skills/architecture/state-management-architect/) | 为每类状态选择正确工具：React Query（服务器状态）、Zustand（全局 UI 状态）、React Hook Form（表单）、useState/useReducer（本地状态）。防止全部用 Redux 的反模式。 | `state management` / `should I use Redux` / `React Query setup` / `Zustand` | `bash -s -- state-management-architect` |
+| [project-structure-manager](./skills/architecture/project-structure-manager/) | 审查项目结构：检测循环依赖、god 目录、分散的领域逻辑和模块边界违规。输出分阶段迁移计划，含 ESLint 规则、路径别名和命名规范。 | `audit project structure` / `find circular dependencies` / `organize the codebase` | `bash -s -- project-structure-manager` |
+
 ### 📋 Planning — 项目规划 + 原子化实现
 
 | Skill | 功能简介 | 触发词 | 安装命令 |
@@ -150,34 +190,44 @@ cp -r personal_skills/skills/debugging/systematic-debugging .claude/skills/
 
 ```
 personal_skills/
-├── README.md                              ← 你在这里
-├── INSTALL.md                             ← 各平台详细安装指引
-├── skills.yaml                            ← 机器可读的 skill 注册表（Agent 读这里）
-├── scripts/
-│   └── install.sh                         ← 自动安装脚本
+├── README.md
+├── INSTALL.md
+├── skills.yaml                            ← 机器可读注册表（23 skills）
+├── scripts/install.sh
 └── skills/
-    ├── _template/                         ← 新建 skill 用这个模板
-    │   └── SKILL.md
+    ├── _template/SKILL.md
     ├── code-development/
     │   └── codebase-ontology/
-    │       ├── SKILL.md
-    │       └── references/
-    │           └── CODEBASE_TEMPLATE.md
-    ├── planning/
-    │   ├── brainstorming/SKILL.md
-    │   ├── writing-plans/SKILL.md
-    │   ├── subagent-driven-development/SKILL.md
-    │   └── executing-plans/SKILL.md
-    ├── code-review/
+    ├── interaction/                       ← 交互设计（3）
+    │   ├── interaction-flow-designer/
+    │   ├── microinteraction-designer/
+    │   └── ux-heuristic-reviewer/
+    ├── ui/                                ← UI / 设计系统（3）
+    │   ├── design-system-architect/
+    │   ├── ui-component-generator/
+    │   └── figma-to-component/
+    ├── frontend-engineering/              ← 前端工程（3）
+    │   ├── frontend-refactor/
+    │   ├── frontend-code-reviewer/
+    │   └── testing-generator/
+    ├── performance/                       ← 性能优化（3）
+    │   ├── frontend-performance-analyzer/
+    │   ├── bundle-size-optimizer/
+    │   └── react-render-optimizer/
+    ├── architecture/                      ← 前端架构（3）
+    │   ├── frontend-architecture-designer/
+    │   ├── state-management-architect/
+    │   └── project-structure-manager/
+    ├── planning/                          ← 项目规划（4）
+    │   ├── brainstorming/
+    │   ├── writing-plans/
+    │   ├── subagent-driven-development/
+    │   └── executing-plans/
+    ├── code-review/                       ← 代码审查（2）
     │   ├── requesting-code-review/
-    │   │   ├── SKILL.md
-    │   │   └── code-reviewer.md           ← reviewer subagent 提示模板
-    │   └── receiving-code-review/SKILL.md
-    └── debugging/
+    │   └── receiving-code-review/
+    └── debugging/                         ← 调试（1）
         └── systematic-debugging/
-            ├── SKILL.md
-            ├── root-cause-tracing.md      ← 调用链回溯技术
-            └── defense-in-depth.md        ← 多层防御验证技术
 ```
 
 ---
