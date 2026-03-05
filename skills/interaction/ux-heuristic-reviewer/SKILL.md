@@ -1,6 +1,6 @@
 ---
 name: ux-heuristic-reviewer
-description: Audits UI designs and implementations against Nielsen's 10 usability heuristics plus accessibility standards. Produces a prioritized list of issues with severity ratings and specific fixes. Triggers: "review the UX", "usability audit", "check accessibility", "UX review", "is this good UX", "audit the interface", "check usability".
+description: "Audits UI designs and implementations against Nielsen's 10 usability heuristics plus accessibility standards. Produces a prioritized list of issues with severity ratings and specific fixes. Triggers: \"review the UX\", \"usability audit\", \"check accessibility\", \"UX review\", \"is this good UX\", \"audit the interface\", \"check usability\"."
 ---
 
 # UX Heuristic Reviewer

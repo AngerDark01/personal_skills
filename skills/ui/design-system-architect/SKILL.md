@@ -1,6 +1,6 @@
 ---
 name: design-system-architect
-description: Designs and audits design system foundations: design tokens (color, spacing, typography, shadow), component APIs, and theming architecture. Use when building a new design system, auditing an existing one for consistency, or planning a migration from hardcoded styles to tokens. Triggers: "design system", "design tokens", "theming", "audit our styles", "build a component library", "spacing system", "typography scale".
+description: "Designs and audits design system foundations: design tokens (color, spacing, typography, shadow), component APIs, and theming architecture. Use when building a new design system, auditing an existing one for consistency, or planning a migration from hardcoded styles to tokens. Triggers: \"design system\", \"design tokens\", \"theming\", \"audit our styles\", \"build a component library\", \"spacing system\", \"typography scale\"."
 ---
 
 # Design System Architect

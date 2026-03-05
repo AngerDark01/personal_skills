@@ -1,6 +1,6 @@
 ---
 name: frontend-code-reviewer
-description: Reviews frontend code (React/Vue/HTML/CSS) for code quality, accessibility compliance, performance anti-patterns, and UX issues. Produces categorized findings with specific fixes. Triggers: "review this frontend code", "check this component", "accessibility audit", "review my CSS", "check this React code", "code review", "frontend review".
+description: "Reviews frontend code (React/Vue/HTML/CSS) for code quality, accessibility compliance, performance anti-patterns, and UX issues. Produces categorized findings with specific fixes. Triggers: \"review this frontend code\", \"check this component\", \"accessibility audit\", \"review my CSS\", \"check this React code\", \"code review\", \"frontend review\"."
 ---
 
 # Frontend Code Reviewer

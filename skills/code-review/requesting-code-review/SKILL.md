@@ -1,6 +1,6 @@
 ---
 name: requesting-code-review
-description: Dispatches a code-reviewer subagent to catch issues before they cascade. Mandatory after each task in subagent-driven development, after completing major features, and before merging to main. Triggers: "request code review", "review this code", "check my implementation", or automatically as part of subagent-driven-development workflow.
+description: "Dispatches a code-reviewer subagent to catch issues before they cascade. Mandatory after each task in subagent-driven development, after completing major features, and before merging to main. Triggers: \"request code review\", \"review this code\", \"check my implementation\", or automatically as part of subagent-driven-development workflow."
 ---
 
 # Requesting Code Review

@@ -1,6 +1,6 @@
 ---
 name: microinteraction-designer
-description: Designs and implements micro-interactions: hover effects, loading states, transitions, animations, and feedback moments that make interfaces feel alive and responsive. Use when polishing UI components, adding motion to interactions, or making a UI feel more delightful. Triggers: "add animations", "make it feel more alive", "loading states", "hover effects", "transition between states", "micro-interactions", "animate this".
+description: "Designs and implements micro-interactions: hover effects, loading states, transitions, animations, and feedback moments that make interfaces feel alive and responsive. Use when polishing UI components, adding motion to interactions, or making a UI feel more delightful. Triggers: \"add animations\", \"make it feel more alive\", \"loading states\", \"hover effects\", \"transition between states\", \"micro-interactions\", \"animate this\"."
 ---
 
 # Microinteraction Designer

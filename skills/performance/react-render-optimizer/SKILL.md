@@ -1,6 +1,6 @@
 ---
 name: react-render-optimizer
-description: Identifies and fixes unnecessary React re-renders using memoization, stable references, and proper component architecture. Targets measurable frame-rate improvements and reduced CPU usage. Triggers: "component re-renders too much", "React is slow", "optimize re-renders", "memo", "useMemo", "useCallback", "React profiler", "sluggish UI".
+description: "Identifies and fixes unnecessary React re-renders using memoization, stable references, and proper component architecture. Targets measurable frame-rate improvements and reduced CPU usage. Triggers: \"component re-renders too much\", \"React is slow\", \"optimize re-renders\", \"memo\", \"useMemo\", \"useCallback\", \"React profiler\", \"sluggish UI\"."
 ---
 
 # React Render Optimizer

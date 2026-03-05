@@ -1,6 +1,6 @@
 ---
 name: receiving-code-review
-description: Protocol for processing code review feedback with technical rigor, not emotional performance. Verify before implementing, ask before assuming, push back when wrong. Triggers: "process code review", "I got review feedback", "responding to review", or any time code review feedback needs to be acted on.
+description: "Protocol for processing code review feedback with technical rigor, not emotional performance. Verify before implementing, ask before assuming, push back when wrong. Triggers: \"process code review\", \"I got review feedback\", \"responding to review\", or any time code review feedback needs to be acted on."
 ---
 
 # Receiving Code Review

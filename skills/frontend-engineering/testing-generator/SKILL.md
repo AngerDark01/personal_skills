@@ -1,6 +1,6 @@
 ---
 name: testing-generator
-description: Generates unit tests, component tests, and integration tests for frontend code. Follows testing best practices: test behavior not implementation, meaningful assertions, edge case coverage. Triggers: "write tests for this", "generate unit tests", "test this component", "add tests", "write test cases", "improve test coverage".
+description: "Generates unit tests, component tests, and integration tests for frontend code. Follows testing best practices: test behavior not implementation, meaningful assertions, edge case coverage. Triggers: \"write tests for this\", \"generate unit tests\", \"test this component\", \"add tests\", \"write test cases\", \"improve test coverage\"."
 ---
 
 # Testing Generator

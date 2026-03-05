@@ -1,6 +1,6 @@
 ---
 name: frontend-architecture-designer
-description: Designs scalable frontend application architectures: feature-based folder structure, module boundaries, data flow patterns, and component hierarchy. Use when starting a new project, restructuring an existing one, or planning a major refactor. Triggers: "design the architecture", "structure the project", "how should we organize this", "frontend architecture", "project structure", "modular architecture".
+description: "Designs scalable frontend application architectures: feature-based folder structure, module boundaries, data flow patterns, and component hierarchy. Use when starting a new project, restructuring an existing one, or planning a major refactor. Triggers: \"design the architecture\", \"structure the project\", \"how should we organize this\", \"frontend architecture\", \"project structure\", \"modular architecture\"."
 ---
 
 # Frontend Architecture Designer

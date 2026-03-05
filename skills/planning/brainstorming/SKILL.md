@@ -1,6 +1,6 @@
 ---
 name: brainstorming
-description: Transforms ideas into validated designs before any implementation begins. Hard-gates all code writing until a design is approved. Use when starting any new project, feature, or significant change. Triggers: "let's plan this", "I want to build", "design this feature", "let's think through", or any new feature request before coding starts.
+description: "Transforms ideas into validated designs before any implementation begins. Hard-gates all code writing until a design is approved. Use when starting any new project, feature, or significant change. Triggers: \"let's plan this\", \"I want to build\", \"design this feature\", \"let's think through\", or any new feature request before coding starts."
 ---
 
 # Brainstorming

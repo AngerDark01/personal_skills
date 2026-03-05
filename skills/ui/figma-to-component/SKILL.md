@@ -1,6 +1,6 @@
 ---
 name: figma-to-component
-description: Converts Figma designs (screenshots, descriptions, or exported assets) into production-ready React/Vue components that faithfully implement the design. Extracts design tokens from the design and maps them to code. Triggers: "implement this Figma design", "convert this design to code", "build this from the mockup", "code this UI design", "implement the design spec".
+description: "Converts Figma designs (screenshots, descriptions, or exported assets) into production-ready React/Vue components that faithfully implement the design. Extracts design tokens from the design and maps them to code. Triggers: \"implement this Figma design\", \"convert this design to code\", \"build this from the mockup\", \"code this UI design\", \"implement the design spec\"."
 ---
 
 # Figma to Component

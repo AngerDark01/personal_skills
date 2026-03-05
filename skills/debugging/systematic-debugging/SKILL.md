@@ -1,6 +1,6 @@
 ---
 name: systematic-debugging
-description: Four-phase mandatory debugging process that finds root causes before attempting any fix. Use for ANY technical issue — test failures, bugs, unexpected behavior, performance problems, build failures. Triggers: "debug this", "fix this bug", "tests are failing", "something's broken", or any situation where you might be tempted to try a quick fix.
+description: "Four-phase mandatory debugging process that finds root causes before attempting any fix. Use for ANY technical issue — test failures, bugs, unexpected behavior, performance problems, build failures. Triggers: \"debug this\", \"fix this bug\", \"tests are failing\", \"something's broken\", or any situation where you might be tempted to try a quick fix."
 ---
 
 # Systematic Debugging

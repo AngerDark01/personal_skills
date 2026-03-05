@@ -1,6 +1,6 @@
 ---
 name: your-skill-name
-description: [必填。说明：做什么 + 何时触发。包含具体触发词。例：当用户说 "scan the project"、"build codebase map" 或询问项目结构时使用本 skill。]
+description: "[必填。说明：做什么 + 何时触发。包含具体触发词。例：当用户说 \"scan the project\"、\"build codebase map\" 或询问项目结构时使用本 skill。]"
 ---
 
 # Your Skill Name

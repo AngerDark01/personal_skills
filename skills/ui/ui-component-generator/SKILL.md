@@ -1,6 +1,6 @@
 ---
 name: ui-component-generator
-description: Generates production-grade, distinctive UI components for React or Vue with exceptional aesthetic quality. Avoids generic AI design patterns. Use when building web components, landing pages, dashboards, UI elements, or any frontend interface. Triggers: "build this component", "create a UI for", "generate the frontend", "design this page", "make a landing page", "build a dashboard", "create this form".
+description: "Generates production-grade, distinctive UI components for React or Vue with exceptional aesthetic quality. Avoids generic AI design patterns. Use when building web components, landing pages, dashboards, UI elements, or any frontend interface. Triggers: \"build this component\", \"create a UI for\", \"generate the frontend\", \"design this page\", \"make a landing page\", \"build a dashboard\", \"create this form\"."
 ---
 
 # UI Component Generator

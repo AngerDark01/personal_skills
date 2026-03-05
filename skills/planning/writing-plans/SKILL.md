@@ -1,6 +1,6 @@
 ---
 name: writing-plans
-description: Breaks an approved design into detailed, atomic 2-5 minute implementation tasks following TDD. Every task includes exact file paths, complete code snippets, and precise verification commands. Use after brainstorming completes. Triggers: "write a plan", "break this into tasks", "create implementation plan", or when brainstorming hands off after design approval.
+description: "Breaks an approved design into detailed, atomic 2-5 minute implementation tasks following TDD. Every task includes exact file paths, complete code snippets, and precise verification commands. Use after brainstorming completes. Triggers: \"write a plan\", \"break this into tasks\", \"create implementation plan\", or when brainstorming hands off after design approval."
 ---
 
 # Writing Plans

@@ -1,6 +1,6 @@
 ---
 name: state-management-architect
-description: Designs state management architecture for React applications. Chooses the right tool for each state category (server state vs client state vs UI state), prevents over-engineering, and fixes common state management problems. Triggers: "state management", "too much Redux", "should I use Redux", "React Query setup", "Zustand vs Context", "how to manage state", "state architecture".
+description: "Designs state management architecture for React applications. Chooses the right tool for each state category (server state vs client state vs UI state), prevents over-engineering, and fixes common state management problems. Triggers: \"state management\", \"too much Redux\", \"should I use Redux\", \"React Query setup\", \"Zustand vs Context\", \"how to manage state\", \"state architecture\"."
 ---
 
 # State Management Architect

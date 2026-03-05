@@ -1,6 +1,6 @@
 ---
 name: interaction-flow-designer
-description: Maps and designs user interaction flows, page state machines, and navigation architectures for web applications. Use when designing multi-step forms, onboarding flows, wizard UIs, modal stacks, or any feature requiring explicit state transitions. Triggers: "design the user flow", "map out the interaction", "state machine for this feature", "how should users navigate", "design the UX flow".
+description: "Maps and designs user interaction flows, page state machines, and navigation architectures for web applications. Use when designing multi-step forms, onboarding flows, wizard UIs, modal stacks, or any feature requiring explicit state transitions. Triggers: \"design the user flow\", \"map out the interaction\", \"state machine for this feature\", \"how should users navigate\", \"design the UX flow\"."
 ---
 
 # Interaction Flow Designer

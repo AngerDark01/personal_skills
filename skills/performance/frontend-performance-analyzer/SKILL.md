@@ -1,6 +1,6 @@
 ---
 name: frontend-performance-analyzer
-description: Analyzes frontend performance: Core Web Vitals, render-blocking resources, bundle size, network waterfalls, and JavaScript execution. Produces prioritized optimization recommendations with measurable impact. Triggers: "analyze performance", "why is this slow", "improve Web Vitals", "performance audit", "LCP is bad", "CLS issues", "TTI optimization", "profile this".
+description: "Analyzes frontend performance: Core Web Vitals, render-blocking resources, bundle size, network waterfalls, and JavaScript execution. Produces prioritized optimization recommendations with measurable impact. Triggers: \"analyze performance\", \"why is this slow\", \"improve Web Vitals\", \"performance audit\", \"LCP is bad\", \"CLS issues\", \"TTI optimization\", \"profile this\"."
 ---
 
 # Frontend Performance Analyzer

@@ -1,6 +1,6 @@
 ---
 name: project-structure-manager
-description: Analyzes and improves frontend project structure: identifies module boundary violations, circular dependencies, misplaced files, and structural debt. Produces a migration plan. Triggers: "audit project structure", "fix module boundaries", "organize the codebase", "find circular dependencies", "repo structure", "where should this file go", "project organization".
+description: "Analyzes and improves frontend project structure: identifies module boundary violations, circular dependencies, misplaced files, and structural debt. Produces a migration plan. Triggers: \"audit project structure\", \"fix module boundaries\", \"organize the codebase\", \"find circular dependencies\", \"repo structure\", \"where should this file go\", \"project organization\"."
 ---
 
 # Project Structure Manager

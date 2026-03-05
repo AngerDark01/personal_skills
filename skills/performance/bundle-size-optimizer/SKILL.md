@@ -1,6 +1,6 @@
 ---
 name: bundle-size-optimizer
-description: Analyzes and reduces JavaScript bundle size through dependency auditing, code splitting, tree shaking, and import optimization. Targets measurable reductions in initial bundle weight. Triggers: "bundle is too large", "reduce bundle size", "optimize imports", "tree shaking", "code splitting", "too much JavaScript", "slow initial load".
+description: "Analyzes and reduces JavaScript bundle size through dependency auditing, code splitting, tree shaking, and import optimization. Targets measurable reductions in initial bundle weight. Triggers: \"bundle is too large\", \"reduce bundle size\", \"optimize imports\", \"tree shaking\", \"code splitting\", \"too much JavaScript\", \"slow initial load\"."
 ---
 
 # Bundle Size Optimizer

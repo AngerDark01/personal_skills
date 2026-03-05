@@ -1,6 +1,6 @@
 ---
 name: subagent-driven-development
-description: Executes an implementation plan by dispatching a fresh subagent per task with two-stage review (spec compliance then code quality) after each. Produces high-quality, reviewed code with fast iteration inside the current session. Use when you have a written plan with mostly independent tasks. Triggers: "execute the plan with subagents", "run subagent-driven dev", or when writing-plans hands off after plan creation.
+description: "Executes an implementation plan by dispatching a fresh subagent per task with two-stage review (spec compliance then code quality) after each. Produces high-quality, reviewed code with fast iteration inside the current session. Use when you have a written plan with mostly independent tasks. Triggers: \"execute the plan with subagents\", \"run subagent-driven dev\", or when writing-plans hands off after plan creation."
 ---
 
 # Subagent-Driven Development

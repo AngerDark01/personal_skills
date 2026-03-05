@@ -1,6 +1,6 @@
 ---
 name: frontend-refactor
-description: Refactors React components and hooks to improve composition, reduce prop drilling, eliminate boolean prop explosion, and enforce clean separation of concerns. Uses composition patterns over configuration. Triggers: "refactor this component", "too many props", "simplify this", "split this component", "extract this logic", "hooks refactor", "component is too big".
+description: "Refactors React components and hooks to improve composition, reduce prop drilling, eliminate boolean prop explosion, and enforce clean separation of concerns. Uses composition patterns over configuration. Triggers: \"refactor this component\", \"too many props\", \"simplify this\", \"split this component\", \"extract this logic\", \"hooks refactor\", \"component is too big\"."
 ---
 
 # Frontend Refactor

@@ -1,6 +1,6 @@
 ---
 name: codebase-ontology
-description: Builds and maintains a persistent CODEBASE.md ontology file that maps a project's full structure, data flows, function implementations, and call relationships. Use this skill whenever: (1) starting work on an unfamiliar codebase and needing to understand it quickly, (2) onboarding to a new project, (3) a user says "scan the project", "build the codebase map", "initialize ontology", or "read the project" — trigger a full scan; (4) after completing a feature or bugfix and a user says "update the ontology", "sync the map", "I confirmed this feature works" — trigger an incremental update. Always use this skill when context about the codebase structure would help avoid bugs from incomplete understanding.
+description: "Builds and maintains a persistent CODEBASE.md ontology file that maps a project's full structure, data flows, function implementations, and call relationships. Use this skill whenever: (1) starting work on an unfamiliar codebase and needing to understand it quickly, (2) onboarding to a new project, (3) a user says \"scan the project\", \"build the codebase map\", \"initialize ontology\", or \"read the project\" — trigger a full scan; (4) after completing a feature or bugfix and a user says \"update the ontology\", \"sync the map\", \"I confirmed this feature works\" — trigger an incremental update. Always use this skill when context about the codebase structure would help avoid bugs from incomplete understanding."
 ---
 
 # Codebase Ontology Skill
