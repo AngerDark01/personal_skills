@@ -119,6 +119,38 @@ curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/sc
 |---|---|---|---|
 | [systematic-debugging](./skills/debugging/systematic-debugging/) | 四阶段强制 debug 流程：根因调查 → 模式分析 → 假设验证 → 实现。铁律：没有根因不许修 bug。失败 3 次后质疑架构。含 `root-cause-tracing.md` 和 `defense-in-depth.md`。 | `debug this` / `fix this bug` / `tests are failing` / `something's broken` | `bash -s -- systematic-debugging` |
 
+### 🎯 Product Strategy — 产品战略
+
+| Skill | 功能简介 | 触发词 | 安装命令 |
+|---|---|---|---|
+| [jobs-to-be-done](./skills/product-strategy/jobs-to-be-done/) | 用 Christensen JTBD 框架挖掘客户"雇佣"产品的真正原因。含 Job Statement 格式（When/I want/So I can）、进步四力（Push/Pull/焦虑/惯性）、Big vs Little Hire、非显性竞争者，以及完整的 Switch Interview 访谈协议。 | `jobs to be done` / `JTBD` / `why do customers use this` / `non-obvious competition` | `bash -s -- jobs-to-be-done` |
+| [inspired-product](./skills/product-strategy/inspired-product/) | Marty Cagan 赋能产品团队模型：双轨制（Discovery + Delivery）、四大产品风险（价值/可用性/可行性/商业可行性）、10 问机会评估、产品愿景和 OKR 落地。 | `product discovery` / `dual track agile` / `product risks` / `opportunity assessment` / `product OKRs` | `bash -s -- inspired-product` |
+| [obviously-awesome](./skills/product-strategy/obviously-awesome/) | April Dunford 5 步定位框架：竞争替代品 → 独特属性 → 价值主题 → 最佳客户 → 市场品类选择。输出完整定位画布和定位陈述。 | `product positioning` / `market category` / `positioning statement` / `value proposition` | `bash -s -- obviously-awesome` |
+
+### 🔬 Product Discovery — 产品发现
+
+| Skill | 功能简介 | 触发词 | 安装命令 |
+|---|---|---|---|
+| [mom-test](./skills/product-discovery/mom-test/) | Fitzpatrick Mom Test 客户访谈规则：聊他们的生活而非你的想法，问具体过去事实而非假设，听而不推销，要承诺而非赞美。含完整对话结构和避免虚假验证的问题模板。 | `customer interview` / `user interview` / `validate my idea` / `customer discovery` | `bash -s -- mom-test` |
+| [continuous-discovery](./skills/product-discovery/continuous-discovery/) | Teresa Torres 持续发现节奏：每周客户接触、机会方案树（OST）、假设映射与快速实验，PM/设计/工程三角协同。含每周 discovery 会议模板。 | `continuous discovery` / `opportunity solution tree` / `OST` / `weekly discovery` | `bash -s -- continuous-discovery` |
+| [user-personas](./skills/product-discovery/user-personas/) | 基于 JTBD + 行为研究 + 真实客户数据构建有证据支撑的用户画像。含数据来源清单、行为聚类方法、完整画像模板（含置信度）、以及常见反模式。 | `create user personas` / `define our users` / `who are our customers` / `persona template` | `bash -s -- user-personas` |
+
+### 📝 Requirements — 需求梳理
+
+| Skill | 功能简介 | 触发词 | 安装命令 |
+|---|---|---|---|
+| [prd-writer](./skills/requirements/prd-writer/) | 生成结构化产品需求文档（PRD）：问题陈述、成功指标（OKR 格式）、用户故事、方案描述、范围分期、风险表、依赖项和待解问题。预先厘清范围，保存到 `docs/prd/`。 | `write a PRD` / `product requirements` / `spec this feature` / `document this feature` | `bash -s -- prd-writer` |
+| [user-stories](./skills/requirements/user-stories/) | 用 INVEST 原则和 Given/When/Then 验收标准编写高质量用户故事。含故事拆分技巧、Epic→Feature→Story 层级、故事卡模板和常见反模式。 | `write user stories` / `break this into stories` / `acceptance criteria` / `split this epic` | `bash -s -- user-stories` |
+| [feature-prioritization](./skills/requirements/feature-prioritization/) | 用 RICE、ICE、Kano、MoSCoW、机会评分五大框架客观排列功能优先级。含各框架评分表、选框架指南和优先级会议协议。 | `prioritize features` / `RICE scoring` / `MoSCoW` / `what should we build next` / `Kano model` | `bash -s -- feature-prioritization` |
+
+### 🖌️ Product Design — 产品设计
+
+| Skill | 功能简介 | 触发词 | 安装命令 |
+|---|---|---|---|
+| [lean-ux](./skills/product-design/lean-ux/) | Gothelf Lean UX：声明假设、写假设陈述、设计最小可验证实验（纸原型 → Wizard of Oz → A/B 测试）、运行协作 Design Studio，整合进双轨敏捷。含 Lean UX Canvas。 | `lean UX` / `hypothesis-driven design` / `test this assumption` / `design studio` | `bash -s -- lean-ux` |
+| [design-sprint](./skills/product-design/design-sprint/) | Jake Knapp 5 天 Design Sprint 完整流程：周一（地图）→ 周二（草图）→ 周三（决策）→ 周四（原型）→ 周五（5 用户测试）。含每日活动时间表、团队角色、访谈脚本和 Sprint 报告模板。 | `design sprint` / `5-day sprint` / `prototype and test` / `validate before building` | `bash -s -- design-sprint` |
+| [customer-journey-map](./skills/product-design/customer-journey-map/) | 绘制 7 阶段（感知→推荐）客户旅程全貌，识别 Aha 时刻、流失触发点、痛点和改进机会。含各阶段数据来源、工作坊引导指南和机会优先矩阵。 | `customer journey` / `journey map` / `where do users drop off` / `aha moment` / `churn triggers` | `bash -s -- customer-journey-map` |
+
 ---
 
 ## 🔀 推荐工作流
@@ -192,12 +224,28 @@ cp -r personal_skills/skills/debugging/systematic-debugging .claude/skills/
 personal_skills/
 ├── README.md
 ├── INSTALL.md
-├── skills.yaml                            ← 机器可读注册表（23 skills）
+├── skills.yaml                            ← 机器可读注册表（35 skills）
 ├── scripts/install.sh
 └── skills/
     ├── _template/SKILL.md
     ├── code-development/
     │   └── codebase-ontology/
+    ├── product-strategy/                  ← 产品战略（3）
+    │   ├── jobs-to-be-done/
+    │   ├── inspired-product/
+    │   └── obviously-awesome/
+    ├── product-discovery/                 ← 产品发现（3）
+    │   ├── mom-test/
+    │   ├── continuous-discovery/
+    │   └── user-personas/
+    ├── requirements/                      ← 需求梳理（3）
+    │   ├── prd-writer/
+    │   ├── user-stories/
+    │   └── feature-prioritization/
+    ├── product-design/                    ← 产品设计（3）
+    │   ├── lean-ux/
+    │   ├── design-sprint/
+    │   └── customer-journey-map/
     ├── interaction/                       ← 交互设计（3）
     │   ├── interaction-flow-designer/
     │   ├── microinteraction-designer/

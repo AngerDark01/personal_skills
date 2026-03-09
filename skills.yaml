@@ -555,3 +555,298 @@ skills:
       - project-structure
       - refactoring
     install_cmd: "bash -s -- project-structure-manager"
+
+  # ── Product Strategy ──────────────────────────────────────────────────────
+
+  - name: jobs-to-be-done
+    category: product-strategy
+    status: stable
+    description: >
+      Apply Christensen's JTBD framework to uncover why customers hire a product.
+      Covers job statement format (When/I want/So I can), Forces of Progress
+      (Push/Pull/Anxiety/Habit), Big vs Little Hire, non-obvious competition,
+      and switch interview protocol.
+    path: skills/product-strategy/jobs-to-be-done
+    skill_file: skills/product-strategy/jobs-to-be-done/SKILL.md
+    triggers:
+      - "why do customers use this"
+      - "jobs to be done"
+      - "JTBD"
+      - "what job does this product do"
+      - "why do users switch"
+      - "non-obvious competition"
+    tags:
+      - product-strategy
+      - customer-research
+      - positioning
+    install_cmd: "bash -s -- jobs-to-be-done"
+    source: "Based on wondelai/skills (MIT) + Christensen's Competing Against Luck"
+
+  - name: inspired-product
+    category: product-strategy
+    status: stable
+    description: >
+      Apply Marty Cagan's empowered product team model: dual-track discovery/delivery,
+      four product risks (value/usability/feasibility/viability), opportunity assessment
+      with 10 questions, product vision, and outcome-based OKRs.
+    path: skills/product-strategy/inspired-product
+    skill_file: skills/product-strategy/inspired-product/SKILL.md
+    triggers:
+      - "empowered product team"
+      - "product discovery"
+      - "dual track agile"
+      - "product risks"
+      - "opportunity assessment"
+      - "product OKRs"
+      - "product vision"
+    tags:
+      - product-strategy
+      - product-management
+      - discovery
+      - okr
+    install_cmd: "bash -s -- inspired-product"
+    source: "Based on wondelai/skills (MIT) + Marty Cagan's INSPIRED"
+
+  - name: obviously-awesome
+    category: product-strategy
+    status: stable
+    description: >
+      Apply April Dunford's 5-step positioning framework: competitive alternatives,
+      unique attributes, value themes, best-fit customers, and market category choice.
+      Produces a complete positioning canvas and positioning statement.
+    path: skills/product-strategy/obviously-awesome
+    skill_file: skills/product-strategy/obviously-awesome/SKILL.md
+    triggers:
+      - "product positioning"
+      - "how should we position this"
+      - "market category"
+      - "competitive positioning"
+      - "value proposition"
+      - "positioning statement"
+    tags:
+      - product-strategy
+      - positioning
+      - marketing
+    install_cmd: "bash -s -- obviously-awesome"
+    source: "Based on wondelai/skills (MIT) + April Dunford's Obviously Awesome"
+
+  # ── Product Discovery ─────────────────────────────────────────────────────
+
+  - name: mom-test
+    category: product-discovery
+    status: stable
+    description: >
+      Conduct customer interviews using Fitzpatrick's Mom Test rules: talk about their
+      life (not your idea), ask for specific past facts, listen rather than pitch,
+      and seek commitment over compliments. Includes conversation structure and question
+      templates for avoiding false validation.
+    path: skills/product-discovery/mom-test
+    skill_file: skills/product-discovery/mom-test/SKILL.md
+    triggers:
+      - "customer interview"
+      - "user interview"
+      - "validate my idea"
+      - "talk to customers"
+      - "customer discovery"
+      - "interview protocol"
+    tags:
+      - product-discovery
+      - customer-research
+      - interviews
+    install_cmd: "bash -s -- mom-test"
+    source: "Based on wondelai/skills (MIT) + Fitzpatrick's The Mom Test"
+
+  - name: continuous-discovery
+    category: product-discovery
+    status: stable
+    description: >
+      Run Teresa Torres's continuous discovery cadence: weekly customer touchpoints,
+      Opportunity Solution Trees (OST), assumption mapping and testing, and collaborative
+      discovery across PM/Design/Engineering. Weekly meeting template included.
+    path: skills/product-discovery/continuous-discovery
+    skill_file: skills/product-discovery/continuous-discovery/SKILL.md
+    triggers:
+      - "continuous discovery"
+      - "opportunity solution tree"
+      - "OST"
+      - "weekly discovery"
+      - "discovery cadence"
+      - "assumption testing"
+    tags:
+      - product-discovery
+      - customer-research
+      - agile
+    install_cmd: "bash -s -- continuous-discovery"
+    source: "Based on wondelai/skills (MIT) + Torres's Continuous Discovery Habits"
+
+  - name: user-personas
+    category: product-discovery
+    status: stable
+    description: >
+      Build evidence-calibrated user personas grounded in JTBD, behavioral research,
+      and real customer data. Includes data sourcing checklist, behavioral clustering,
+      full persona template with confidence levels, and anti-patterns to avoid.
+    path: skills/product-discovery/user-personas
+    skill_file: skills/product-discovery/user-personas/SKILL.md
+    triggers:
+      - "create user personas"
+      - "define our users"
+      - "user research personas"
+      - "who are our customers"
+      - "persona template"
+    tags:
+      - product-discovery
+      - ux
+      - customer-research
+    install_cmd: "bash -s -- user-personas"
+    source: "Based on phuryn/pm-skills (open source)"
+
+  # ── Requirements ──────────────────────────────────────────────────────────
+
+  - name: prd-writer
+    category: requirements
+    status: stable
+    description: >
+      Write a complete Product Requirements Document with structured problem framing,
+      success metrics, user stories, proposed solution, scope/phasing, risk table,
+      dependencies, and open questions. Clarifies scope upfront; saves to docs/prd/.
+    path: skills/requirements/prd-writer
+    skill_file: skills/requirements/prd-writer/SKILL.md
+    triggers:
+      - "write a PRD"
+      - "product requirements"
+      - "requirements document"
+      - "spec this feature"
+      - "document this feature"
+      - "PRD for"
+    tags:
+      - requirements
+      - product-management
+      - documentation
+    install_cmd: "bash -s -- prd-writer"
+    source: "Based on snarktank/ralph + github/awesome-copilot + phuryn/pm-skills"
+
+  - name: user-stories
+    category: requirements
+    status: stable
+    description: >
+      Write high-quality user stories using INVEST criteria and Given/When/Then
+      acceptance criteria. Covers story splitting techniques, the Epic→Feature→Story
+      hierarchy, story card template, and common anti-patterns.
+    path: skills/requirements/user-stories
+    skill_file: skills/requirements/user-stories/SKILL.md
+    triggers:
+      - "write user stories"
+      - "break this into stories"
+      - "acceptance criteria"
+      - "INVEST criteria"
+      - "user story template"
+      - "split this epic"
+    tags:
+      - requirements
+      - agile
+      - product-management
+    install_cmd: "bash -s -- user-stories"
+    source: "Based on phuryn/pm-skills + deanpeters/Product-Manager-Skills"
+
+  - name: feature-prioritization
+    category: requirements
+    status: stable
+    description: >
+      Apply RICE, ICE, Kano, MoSCoW, and Opportunity Scoring to prioritize features
+      objectively. Includes scoring tables for each framework, framework selection guide,
+      and prioritization meeting protocol.
+    path: skills/requirements/feature-prioritization
+    skill_file: skills/requirements/feature-prioritization/SKILL.md
+    triggers:
+      - "prioritize features"
+      - "RICE scoring"
+      - "MoSCoW"
+      - "what should we build next"
+      - "feature backlog"
+      - "roadmap prioritization"
+      - "Kano model"
+    tags:
+      - requirements
+      - prioritization
+      - product-management
+      - roadmap
+    install_cmd: "bash -s -- feature-prioritization"
+    source: "Based on phuryn/pm-skills + dhzrx/ai-pm-claude-skills"
+
+  # ── Product Design ────────────────────────────────────────────────────────
+
+  - name: lean-ux
+    category: product-design
+    status: stable
+    description: >
+      Apply Gothelf's Lean UX: declare assumptions, form hypothesis statements,
+      design minimum viable experiments (paper prototype → Wizard of Oz → A/B test),
+      run collaborative Design Studios, and integrate into dual-track Agile.
+      Includes the Lean UX Canvas.
+    path: skills/product-design/lean-ux
+    skill_file: skills/product-design/lean-ux/SKILL.md
+    triggers:
+      - "lean UX"
+      - "hypothesis-driven design"
+      - "test this assumption"
+      - "design experiment"
+      - "minimum viable experiment"
+      - "design studio"
+    tags:
+      - product-design
+      - ux
+      - lean
+      - hypothesis-testing
+    install_cmd: "bash -s -- lean-ux"
+    source: "Based on wondelai/skills (MIT) + Gothelf's Lean UX"
+
+  - name: design-sprint
+    category: product-design
+    status: stable
+    description: >
+      Run Jake Knapp's 5-day Design Sprint: Monday (map), Tuesday (sketch),
+      Wednesday (decide), Thursday (prototype), Friday (test with 5 users).
+      Full day-by-day activity schedule, team roles, interview script, and sprint report template.
+    path: skills/product-design/design-sprint
+    skill_file: skills/product-design/design-sprint/SKILL.md
+    triggers:
+      - "design sprint"
+      - "5-day sprint"
+      - "prototype and test"
+      - "validate before building"
+      - "GV sprint"
+      - "user testing sprint"
+    tags:
+      - product-design
+      - ux
+      - prototyping
+      - user-testing
+    install_cmd: "bash -s -- design-sprint"
+    source: "Based on wondelai/skills (MIT) + Knapp's Sprint"
+
+  - name: customer-journey-map
+    category: product-design
+    status: stable
+    description: >
+      Map the end-to-end customer experience across 7 stages (awareness→advocacy).
+      Identifies aha moment, churn triggers, pain points, and improvement opportunities.
+      Includes data sources per stage, facilitation workshop guide, and opportunity
+      priority matrix.
+    path: skills/product-design/customer-journey-map
+    skill_file: skills/product-design/customer-journey-map/SKILL.md
+    triggers:
+      - "customer journey"
+      - "journey map"
+      - "map the experience"
+      - "where do users drop off"
+      - "onboarding journey"
+      - "aha moment"
+      - "churn triggers"
+    tags:
+      - product-design
+      - ux
+      - customer-research
+      - retention
+    install_cmd: "bash -s -- customer-journey-map"
+    source: "Based on phuryn/pm-skills + wondelai/skills (MIT)"
