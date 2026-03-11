@@ -850,3 +850,86 @@ skills:
       - retention
     install_cmd: "bash -s -- customer-journey-map"
     source: "Based on phuryn/pm-skills + wondelai/skills (MIT)"
+
+  # ── Meta / Skill Development ──────────────────────────────────────────────
+
+  - name: skill-creator
+    category: meta
+    status: stable
+    description: >
+      Create new skills, modify and improve existing skills, and measure skill
+      performance. Covers draft → eval → iterate loop with subagent-based test
+      runs, qualitative eval viewer, quantitative benchmarking, description
+      optimization via run_loop.py, and final packaging.
+    path: skills/meta/skill-creator
+    skill_file: skills/meta/skill-creator/SKILL.md
+    triggers:
+      - "create a skill"
+      - "make a skill"
+      - "write a skill"
+      - "improve this skill"
+      - "optimize skill description"
+      - "benchmark this skill"
+      - "skill creator"
+    tags:
+      - meta
+      - skill-development
+      - evals
+    install_cmd: "bash -s -- skill-creator"
+    source: "Anthropic official (anthropics/skills)"
+
+  - name: frontend-design
+    category: meta
+    status: stable
+    description: >
+      Create distinctive, production-grade frontend interfaces with high design
+      quality. Use when the user asks to build web components, pages, artifacts,
+      posters, or applications. Generates creative, polished code and UI design
+      that avoids generic AI aesthetics — commits to bold aesthetic direction,
+      uses distinctive typography, color, motion, and spatial composition.
+    path: skills/meta/frontend-design
+    skill_file: skills/meta/frontend-design/SKILL.md
+    triggers:
+      - "build a UI"
+      - "design this page"
+      - "create a landing page"
+      - "build a dashboard"
+      - "make this look good"
+      - "style this component"
+      - "web design"
+      - "frontend interface"
+    tags:
+      - ui
+      - design
+      - frontend
+      - aesthetics
+    install_cmd: "bash -s -- frontend-design"
+    source: "Anthropic official (anthropics/skills)"
+
+  - name: doc-coauthoring
+    category: meta
+    status: stable
+    description: >
+      Guide users through a structured 3-stage workflow for co-authoring
+      documents: Context Gathering (info dump + clarifying questions),
+      Refinement & Structure (section-by-section brainstorm → draft → iterate),
+      and Reader Testing (fresh Claude tests the doc to catch blind spots).
+      Use when user wants to write documentation, proposals, technical specs,
+      decision docs, PRDs, RFCs, or similar structured content.
+    path: skills/meta/doc-coauthoring
+    skill_file: skills/meta/doc-coauthoring/SKILL.md
+    triggers:
+      - "write a doc"
+      - "draft a proposal"
+      - "create a spec"
+      - "write up"
+      - "decision doc"
+      - "RFC"
+      - "design doc"
+      - "co-author"
+    tags:
+      - documentation
+      - writing
+      - collaboration
+    install_cmd: "bash -s -- doc-coauthoring"
+    source: "Anthropic official (anthropics/skills)"

@@ -151,6 +151,14 @@ curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/sc
 | [design-sprint](./skills/product-design/design-sprint/) | Jake Knapp 5 天 Design Sprint 完整流程：周一（地图）→ 周二（草图）→ 周三（决策）→ 周四（原型）→ 周五（5 用户测试）。含每日活动时间表、团队角色、访谈脚本和 Sprint 报告模板。 | `design sprint` / `5-day sprint` / `prototype and test` / `validate before building` | `bash -s -- design-sprint` |
 | [customer-journey-map](./skills/product-design/customer-journey-map/) | 绘制 7 阶段（感知→推荐）客户旅程全貌，识别 Aha 时刻、流失触发点、痛点和改进机会。含各阶段数据来源、工作坊引导指南和机会优先矩阵。 | `customer journey` / `journey map` / `where do users drop off` / `aha moment` / `churn triggers` | `bash -s -- customer-journey-map` |
 
+### 🛠️ Meta — Skill 开发 & 通用工具
+
+| Skill | 功能简介 | 触发词 | 安装命令 |
+|---|---|---|---|
+| [skill-creator](./skills/meta/skill-creator/) | Anthropic 官方 skill 制作工具：草稿 → 测试用例 → subagent 并行运行 → eval viewer 定性审查 → 定量 benchmark → 迭代优化 → description 自动调优 → 打包。含完整 eval/grader/comparator/analyzer 子 agent 体系。 | `create a skill` / `make a skill` / `improve this skill` / `benchmark this skill` | `bash -s -- skill-creator` |
+| [frontend-design](./skills/meta/frontend-design/) | Anthropic 官方前端设计指南：避免"AI 通用美学"，提交大胆美学方向，选用独特字体、有主张的色彩、有意义的动效和破格版式。适用于所有 Web 组件、页面、应用和 UI 设计任务。 | `build a UI` / `design this page` / `make this look good` / `web design` / `frontend interface` | `bash -s -- frontend-design` |
+| [doc-coauthoring](./skills/meta/doc-coauthoring/) | Anthropic 官方文档协作工作流：三阶段结构化共写——阶段 1 上下文收集（倾倒信息 + 追问）→ 阶段 2 逐节精炼（头脑风暴 → 策划 → 草稿 → 迭代）→ 阶段 3 读者测试（新鲜 Claude 验证文档可读性）。适合 PRD、设计文档、RFC、决策文档等。 | `write a doc` / `draft a proposal` / `create a spec` / `decision doc` / `RFC` | `bash -s -- doc-coauthoring` |
+
 ---
 
 ## 🔀 推荐工作流
@@ -224,10 +232,14 @@ cp -r personal_skills/skills/debugging/systematic-debugging .claude/skills/
 personal_skills/
 ├── README.md
 ├── INSTALL.md
-├── skills.yaml                            ← 机器可读注册表（35 skills）
+├── skills.yaml                            ← 机器可读注册表（38 skills）
 ├── scripts/install.sh
 └── skills/
     ├── _template/SKILL.md
+    ├── meta/                              ← Skill 开发 & 通用工具（3）[Anthropic 官方]
+    │   ├── skill-creator/                 ← 含 agents/、scripts/、eval-viewer/
+    │   ├── frontend-design/
+    │   └── doc-coauthoring/
     ├── code-development/
     │   └── codebase-ontology/
     ├── product-strategy/                  ← 产品战略（3）
