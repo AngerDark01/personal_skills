@@ -556,6 +556,80 @@ skills:
       - refactoring
     install_cmd: "bash -s -- project-structure-manager"
 
+  # ── Research ──────────────────────────────────────────────────────────────
+
+  - name: associative-research
+    category: research
+    status: stable
+    description: >
+      Divergent research engine for cases where direct keyword search becomes
+      repetitive, SEO-heavy, or too narrow. Builds a concept map first, then
+      pivots across adjacent terminology, upstream/downstream views, and weak
+      signals to escape keyword traps and uncover non-obvious paths.
+    path: skills/research/associative-research
+    skill_file: skills/research/associative-research/SKILL.md
+    triggers:
+      - "搜不到"
+      - "没什么相关结果"
+      - "keyword trap"
+      - "research this"
+      - "do some research"
+      - "调研一下"
+    tags:
+      - research
+      - exploration
+      - discovery
+      - search
+    install_cmd: "bash -s -- associative-research"
+
+  - name: tech-stack-scout
+    category: research
+    status: stable
+    description: >
+      Researches technical options and implementation approaches from the user's
+      actual constraints, not popularity alone. Covers mainstream choices,
+      contrarian alternatives, production pitfalls, migration stories, and
+      recommendation output with explicit exclusion reasons.
+    path: skills/research/tech-stack-scout
+    skill_file: skills/research/tech-stack-scout/SKILL.md
+    triggers:
+      - "use X or Y"
+      - "tech stack research"
+      - "技术选型"
+      - "方案调研"
+      - "有没有比 X 更好的方案"
+      - "可行性调研"
+    tags:
+      - research
+      - technical-evaluation
+      - architecture
+      - tradeoffs
+    install_cmd: "bash -s -- tech-stack-scout"
+
+  - name: product-landscape
+    category: research
+    status: stable
+    description: >
+      Maps product and market landscapes from an engineer or indie-maker
+      perspective. Finds obvious and non-obvious competitors, substitutes,
+      open-source alternatives, user complaints, and whitespace opportunities
+      without getting trapped by existing category labels.
+    path: skills/research/product-landscape
+    skill_file: skills/research/product-landscape/SKILL.md
+    triggers:
+      - "product research"
+      - "market research"
+      - "有哪些竞品"
+      - "产品调研"
+      - "市场调研"
+      - "landscape"
+    tags:
+      - research
+      - product
+      - competition
+      - market
+    install_cmd: "bash -s -- product-landscape"
+
   # ── Product Strategy ──────────────────────────────────────────────────────
 
   - name: jobs-to-be-done

@@ -119,6 +119,14 @@ curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/sc
 |---|---|---|---|
 | [systematic-debugging](./skills/debugging/systematic-debugging/) | 四阶段强制 debug 流程：根因调查 → 模式分析 → 假设验证 → 实现。铁律：没有根因不许修 bug。失败 3 次后质疑架构。含 `root-cause-tracing.md` 和 `defense-in-depth.md`。 | `debug this` / `fix this bug` / `tests are failing` / `something's broken` | `bash -s -- systematic-debugging` |
 
+### 🔎 Research — 调研与探索
+
+| Skill | 功能简介 | 触发词 | 安装命令 |
+|---|---|---|---|
+| [associative-research](./skills/research/associative-research/) | 发散式调研引擎。先做概念地图，再通过同义词、上下游视角、问题反转、跨域类比和弱信号追踪跳出关键词陷阱。适合“搜不到”“结果同质化”“新概念还没形成标准术语”的场景。 | `调研一下` / `搜不到` / `没什么相关结果` / `research this` | `bash -s -- associative-research` |
+| [tech-stack-scout](./skills/research/tech-stack-scout/) | 技术选型 / 技术方案调研。先锁定约束，再覆盖主流方案、替代路径、迁移故事、issue 和生产踩坑，输出带明确排除理由的推荐结论。 | `技术选型` / `方案调研` / `use X or Y` / `有没有比 X 更好的方案` | `bash -s -- tech-stack-scout` |
+| [product-landscape](./skills/research/product-landscape/) | 产品 / 市场格局调研。用工程师和独立开发者视角找显性竞品、替代品、开源方案、用户抱怨和市场空白，避免被既有品类词绑架。 | `产品调研` / `市场调研` / `有哪些竞品` / `product research` | `bash -s -- product-landscape` |
+
 ### 🎯 Product Strategy — 产品战略
 
 | Skill | 功能简介 | 触发词 | 安装命令 |
@@ -232,7 +240,7 @@ cp -r personal_skills/skills/debugging/systematic-debugging .claude/skills/
 personal_skills/
 ├── README.md
 ├── INSTALL.md
-├── skills.yaml                            ← 机器可读注册表（38 skills）
+├── skills.yaml                            ← 机器可读注册表（41 skills）
 ├── scripts/install.sh
 └── skills/
     ├── _template/SKILL.md
@@ -278,6 +286,10 @@ personal_skills/
     │   ├── frontend-architecture-designer/
     │   ├── state-management-architect/
     │   └── project-structure-manager/
+    ├── research/                          ← 调研与探索（3）
+    │   ├── associative-research/
+    │   ├── tech-stack-scout/
+    │   └── product-landscape/
     ├── planning/                          ← 项目规划（4）
     │   ├── brainstorming/
     │   ├── writing-plans/
