@@ -1,0 +1,1009 @@
+# Personal Agent Skills Registry
+# Machine-readable index of all available skills.
+# Agents: read this file to discover skills, then install selectively using scripts/install.sh
+#
+# Install a skill:
+#   curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
+#     | bash -s -- <name>
+#
+# List all skills:
+#   curl -fsSL https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh \
+#     | bash -s -- --list
+
+version: "1.0"
+repo: "AngerDark01/personal_skills"
+install_script: "https://raw.githubusercontent.com/AngerDark01/personal_skills/main/scripts/install.sh"
+
+skills:
+
+  # ── Code Development ──────────────────────────────────────────────────────
+
+  - name: codebase-ontology
+    category: code-development
+    status: stable
+    description: >
+      Scans a project and builds/maintains a persistent CODEBASE.md ontology:
+      module map, end-to-end data flows, key function index, call graph, and risk areas.
+      Solves the AI context-window blind spot by providing a pre-digested global map.
+    path: skills/code-development/codebase-ontology
+    skill_file: skills/code-development/codebase-ontology/SKILL.md
+    triggers:
+      - "scan the project"
+      - "build codebase map"
+      - "initialize ontology"
+      - "read the project"
+      - "update the ontology"
+      - "sync the map"
+    tags:
+      - code-analysis
+      - documentation
+      - architecture
+      - onboarding
+    install_cmd: "bash -s -- codebase-ontology"
+
+  # ── Planning ──────────────────────────────────────────────────────────────
+
+  - name: brainstorming
+    category: planning
+    status: stable
+    description: >
+      Hard-gates all implementation until a design is approved. Explores context,
+      asks one clarifying question at a time, proposes 2-3 approaches with trade-offs,
+      gains incremental approval, then documents the design and hands off to writing-plans.
+      Prevents wasted effort from unexamined assumptions.
+    path: skills/planning/brainstorming
+    skill_file: skills/planning/brainstorming/SKILL.md
+    triggers:
+      - "let's plan this"
+      - "I want to build"
+      - "design this feature"
+      - "let's think through"
+      - "brainstorm"
+    tags:
+      - planning
+      - design
+      - architecture
+      - workflow
+    install_cmd: "bash -s -- brainstorming"
+
+  - name: writing-plans
+    category: planning
+    status: stable
+    description: >
+      Breaks an approved design into atomic 2-5 minute implementation tasks following TDD.
+      Each task includes exact file paths, complete code snippets, and precise verification
+      commands. Produces a plan file in docs/plans/ and offers subagent or batch execution.
+    path: skills/planning/writing-plans
+    skill_file: skills/planning/writing-plans/SKILL.md
+    triggers:
+      - "write a plan"
+      - "break this into tasks"
+      - "create implementation plan"
+    tags:
+      - planning
+      - tdd
+      - workflow
+    install_cmd: "bash -s -- writing-plans"
+
+  - name: subagent-driven-development
+    category: planning
+    status: stable
+    description: >
+      Executes an implementation plan by dispatching a fresh subagent per task,
+      followed by two-stage review (spec compliance then code quality) after each task.
+      Produces high-quality reviewed code with fast iteration inside the current session.
+    path: skills/planning/subagent-driven-development
+    skill_file: skills/planning/subagent-driven-development/SKILL.md
+    triggers:
+      - "execute the plan with subagents"
+      - "run subagent-driven dev"
+      - "implement with subagents"
+    tags:
+      - planning
+      - implementation
+      - workflow
+      - subagents
+    install_cmd: "bash -s -- subagent-driven-development"
+
+  - name: executing-plans
+    category: planning
+    status: stable
+    description: >
+      Batch execution of a written implementation plan with human review checkpoints
+      between task groups. Alternative to subagent-driven-development for when you want
+      explicit human-in-the-loop control in a separate session.
+    path: skills/planning/executing-plans
+    skill_file: skills/planning/executing-plans/SKILL.md
+    triggers:
+      - "execute this plan"
+      - "run the plan"
+      - "implement from the plan"
+    tags:
+      - planning
+      - implementation
+      - workflow
+    install_cmd: "bash -s -- executing-plans"
+
+  # ── Code Review ───────────────────────────────────────────────────────────
+
+  - name: requesting-code-review
+    category: code-review
+    status: stable
+    description: >
+      Dispatches a code-reviewer subagent to catch issues before they cascade.
+      Mandatory after each task in subagent-driven development, after major features,
+      and before merging. Includes the code-reviewer.md subagent prompt template.
+    path: skills/code-review/requesting-code-review
+    skill_file: skills/code-review/requesting-code-review/SKILL.md
+    triggers:
+      - "request code review"
+      - "review this code"
+      - "check my implementation"
+      - "code review"
+    tags:
+      - code-review
+      - quality
+      - workflow
+    install_cmd: "bash -s -- requesting-code-review"
+
+  - name: receiving-code-review
+    category: code-review
+    status: stable
+    description: >
+      Protocol for processing code review feedback with technical rigor.
+      Verify before implementing, ask before assuming, push back when wrong.
+      Eliminates performative agreement and ensures correct, verified implementation.
+    path: skills/code-review/receiving-code-review
+    skill_file: skills/code-review/receiving-code-review/SKILL.md
+    triggers:
+      - "process code review"
+      - "I got review feedback"
+      - "responding to review"
+    tags:
+      - code-review
+      - quality
+    install_cmd: "bash -s -- receiving-code-review"
+
+  # ── Debugging ─────────────────────────────────────────────────────────────
+
+  - name: systematic-debugging
+    category: debugging
+    status: stable
+    description: >
+      Four-phase mandatory debugging process: root cause investigation, pattern analysis,
+      hypothesis testing, and implementation. Core rule: no fixes without root cause.
+      After 3 failed fixes, question the architecture. Includes root-cause-tracing.md
+      and defense-in-depth.md companion techniques.
+    path: skills/debugging/systematic-debugging
+    skill_file: skills/debugging/systematic-debugging/SKILL.md
+    triggers:
+      - "debug this"
+      - "fix this bug"
+      - "tests are failing"
+      - "something's broken"
+      - "why is this not working"
+    tags:
+      - debugging
+      - root-cause
+      - quality
+    install_cmd: "bash -s -- systematic-debugging"
+
+  # ── Interaction Design ────────────────────────────────────────────────────
+
+  - name: interaction-flow-designer
+    category: interaction
+    status: stable
+    description: >
+      Maps user journeys into explicit state machines with ASCII flow diagrams,
+      complete state inventories, edge case lists, and TypeScript type specs.
+      Prevents missing states that become bugs. Covers entry/exit points,
+      branching conditions, error states, and browser-back behavior.
+    path: skills/interaction/interaction-flow-designer
+    skill_file: skills/interaction/interaction-flow-designer/SKILL.md
+    triggers:
+      - "design the user flow"
+      - "map out the interaction"
+      - "state machine for this feature"
+      - "how should users navigate"
+      - "design the UX flow"
+    tags:
+      - ux
+      - interaction-design
+      - state-machine
+    install_cmd: "bash -s -- interaction-flow-designer"
+
+  - name: microinteraction-designer
+    category: interaction
+    status: stable
+    description: >
+      Designs and implements micro-interactions: hover effects, loading states,
+      transitions, and feedback moments. Covers CSS animations, Framer Motion,
+      timing guidelines, and accessibility (prefers-reduced-motion).
+      GPU-only animation patterns for 60fps performance.
+    path: skills/interaction/microinteraction-designer
+    skill_file: skills/interaction/microinteraction-designer/SKILL.md
+    triggers:
+      - "add animations"
+      - "make it feel more alive"
+      - "loading states"
+      - "hover effects"
+      - "micro-interactions"
+      - "animate this"
+    tags:
+      - animation
+      - interaction-design
+      - css
+      - framer-motion
+    install_cmd: "bash -s -- microinteraction-designer"
+
+  - name: ux-heuristic-reviewer
+    category: interaction
+    status: stable
+    description: >
+      Audits UI against Nielsen's 10 usability heuristics and WCAG 2.1 AA.
+      Produces prioritized findings (Critical/Major/Minor) with specific
+      file:line references and actionable fixes. Covers all 10 heuristics
+      plus accessibility spot-check.
+    path: skills/interaction/ux-heuristic-reviewer
+    skill_file: skills/interaction/ux-heuristic-reviewer/SKILL.md
+    triggers:
+      - "review the UX"
+      - "usability audit"
+      - "check accessibility"
+      - "UX review"
+      - "is this good UX"
+      - "audit the interface"
+    tags:
+      - ux
+      - accessibility
+      - wcag
+      - usability
+    install_cmd: "bash -s -- ux-heuristic-reviewer"
+
+  # ── UI / Design System ────────────────────────────────────────────────────
+
+  - name: design-system-architect
+    category: ui
+    status: stable
+    description: >
+      Designs design system foundations: primitive tokens (color/spacing/typography/shadow),
+      semantic token layer, dark mode strategy, and component API contracts.
+      Includes CSS custom property templates, audit checklist for
+      hardcoded values, and theming architecture.
+    path: skills/ui/design-system-architect
+    skill_file: skills/ui/design-system-architect/SKILL.md
+    triggers:
+      - "design system"
+      - "design tokens"
+      - "theming"
+      - "audit our styles"
+      - "build a component library"
+      - "spacing system"
+      - "typography scale"
+    tags:
+      - design-system
+      - tokens
+      - theming
+      - css
+    install_cmd: "bash -s -- design-system-architect"
+
+  - name: ui-component-generator
+    category: ui
+    status: stable
+    description: >
+      Generates production-grade, distinctive React/Vue UI components with
+      intentional aesthetic direction. Avoids generic AI aesthetics.
+      Covers typography, color, motion, spatial composition, accessibility
+      checklist, and production readiness verification.
+    path: skills/ui/ui-component-generator
+    skill_file: skills/ui/ui-component-generator/SKILL.md
+    triggers:
+      - "build this component"
+      - "create a UI for"
+      - "generate the frontend"
+      - "design this page"
+      - "make a landing page"
+      - "build a dashboard"
+    tags:
+      - react
+      - vue
+      - ui-components
+      - accessibility
+    install_cmd: "bash -s -- ui-component-generator"
+    source: "Adapted from Anthropic frontend-design skill"
+
+  - name: figma-to-component
+    category: ui
+    status: stable
+    description: >
+      Converts Figma designs (screenshots, specs, or descriptions) into
+      production-ready React/Vue components. Extracts visual inventory,
+      maps to design tokens, determines component structure, and implements
+      pixel-faithful code with all interactive states.
+    path: skills/ui/figma-to-component
+    skill_file: skills/ui/figma-to-component/SKILL.md
+    triggers:
+      - "implement this Figma design"
+      - "convert this design to code"
+      - "build this from the mockup"
+      - "code this UI design"
+      - "implement the design spec"
+    tags:
+      - figma
+      - react
+      - design-to-code
+    install_cmd: "bash -s -- figma-to-component"
+
+  # ── Frontend Engineering ──────────────────────────────────────────────────
+
+  - name: frontend-refactor
+    category: frontend-engineering
+    status: stable
+    description: >
+      Refactors React components using composition patterns: boolean props to variants,
+      render props to children composition, custom hook extraction, prop drilling
+      elimination, and component splitting by concern. Includes smell detection
+      checklist and safe refactoring workflow.
+    path: skills/frontend-engineering/frontend-refactor
+    skill_file: skills/frontend-engineering/frontend-refactor/SKILL.md
+    triggers:
+      - "refactor this component"
+      - "too many props"
+      - "simplify this"
+      - "split this component"
+      - "extract this logic"
+      - "hooks refactor"
+    tags:
+      - react
+      - refactoring
+      - composition
+    install_cmd: "bash -s -- frontend-refactor"
+    source: "Adapted from Vercel composition-patterns skill"
+
+  - name: frontend-code-reviewer
+    category: frontend-engineering
+    status: stable
+    description: >
+      Reviews frontend code for accessibility (WCAG 2.1 AA), React quality
+      (hooks, keys, state), CSS best practices, and performance anti-patterns.
+      Produces categorized findings (Critical/Major/Minor) with file:line
+      references and specific fixes.
+    path: skills/frontend-engineering/frontend-code-reviewer
+    skill_file: skills/frontend-engineering/frontend-code-reviewer/SKILL.md
+    triggers:
+      - "review this frontend code"
+      - "check this component"
+      - "accessibility audit"
+      - "review my CSS"
+      - "frontend review"
+    tags:
+      - code-review
+      - accessibility
+      - react
+      - css
+    install_cmd: "bash -s -- frontend-code-reviewer"
+    source: "Adapted from Vercel web-design-guidelines skill"
+
+  - name: testing-generator
+    category: frontend-engineering
+    status: stable
+    description: >
+      Generates React component tests, hook tests, form tests, and async tests
+      using Vitest/Jest + React Testing Library. Tests behavior not implementation.
+      Includes MSW mocking patterns, accessibility tests with jest-axe,
+      and testing strategy by coverage tier.
+    path: skills/frontend-engineering/testing-generator
+    skill_file: skills/frontend-engineering/testing-generator/SKILL.md
+    triggers:
+      - "write tests for this"
+      - "generate unit tests"
+      - "test this component"
+      - "add tests"
+      - "write test cases"
+      - "improve test coverage"
+    tags:
+      - testing
+      - react-testing-library
+      - vitest
+      - jest
+    install_cmd: "bash -s -- testing-generator"
+    source: "Adapted from Anthropic webapp-testing skill"
+
+  # ── Performance ───────────────────────────────────────────────────────────
+
+  - name: frontend-performance-analyzer
+    category: performance
+    status: stable
+    description: >
+      Analyzes Core Web Vitals (LCP, INP, CLS), render-blocking resources,
+      and JavaScript execution. Diagnoses with Lighthouse and DevTools.
+      Covers LCP/CLS/INP root causes with specific fixes and a
+      prioritized optimization matrix.
+    path: skills/performance/frontend-performance-analyzer
+    skill_file: skills/performance/frontend-performance-analyzer/SKILL.md
+    triggers:
+      - "analyze performance"
+      - "why is this slow"
+      - "improve Web Vitals"
+      - "performance audit"
+      - "LCP is bad"
+      - "CLS issues"
+    tags:
+      - performance
+      - web-vitals
+      - lighthouse
+    install_cmd: "bash -s -- frontend-performance-analyzer"
+    source: "Adapted from Vercel react-best-practices skill"
+
+  - name: bundle-size-optimizer
+    category: performance
+    status: stable
+    description: >
+      Reduces JavaScript bundle size: heavy dependency replacement (moment→date-fns,
+      lodash→native), barrel file fixes, route/component code splitting, and
+      dynamic imports. Includes bundle analyzer setup and CI size budget enforcement.
+    path: skills/performance/bundle-size-optimizer
+    skill_file: skills/performance/bundle-size-optimizer/SKILL.md
+    triggers:
+      - "bundle is too large"
+      - "reduce bundle size"
+      - "optimize imports"
+      - "tree shaking"
+      - "code splitting"
+      - "too much JavaScript"
+    tags:
+      - performance
+      - bundle
+      - webpack
+      - vite
+    install_cmd: "bash -s -- bundle-size-optimizer"
+    source: "Adapted from Vercel react-best-practices skill"
+
+  - name: react-render-optimizer
+    category: performance
+    status: stable
+    description: >
+      Identifies and eliminates unnecessary React re-renders using React Profiler,
+      why-did-you-render, React.memo, useMemo, useCallback, state co-location,
+      and react-window for lists. Includes decision tree and profiling report template.
+    path: skills/performance/react-render-optimizer
+    skill_file: skills/performance/react-render-optimizer/SKILL.md
+    triggers:
+      - "component re-renders too much"
+      - "React is slow"
+      - "optimize re-renders"
+      - "memo"
+      - "useMemo"
+      - "useCallback"
+      - "sluggish UI"
+    tags:
+      - performance
+      - react
+      - memoization
+    install_cmd: "bash -s -- react-render-optimizer"
+    source: "Adapted from Vercel react-best-practices + composition-patterns skills"
+
+  # ── Architecture ──────────────────────────────────────────────────────────
+
+  - name: frontend-architecture-designer
+    category: architecture
+    status: stable
+    description: >
+      Designs scalable frontend folder structures (small/medium/large project tiers),
+      feature-based module organization, component hierarchy (pages/features/shared),
+      module public APIs, and dependency direction rules. Includes ESLint
+      enforcement and ADR template.
+    path: skills/architecture/frontend-architecture-designer
+    skill_file: skills/architecture/frontend-architecture-designer/SKILL.md
+    triggers:
+      - "design the architecture"
+      - "structure the project"
+      - "how should we organize this"
+      - "frontend architecture"
+      - "project structure"
+      - "modular architecture"
+    tags:
+      - architecture
+      - project-structure
+      - react
+    install_cmd: "bash -s -- frontend-architecture-designer"
+    source: "Adapted from Vercel composition-patterns skill"
+
+  - name: state-management-architect
+    category: architecture
+    status: stable
+    description: >
+      Selects and architects state management for each state category:
+      React Query for server state, Zustand for global client state,
+      React Hook Form for forms, useState/useReducer for local state.
+      Prevents over-engineering with React Redux for all state.
+    path: skills/architecture/state-management-architect
+    skill_file: skills/architecture/state-management-architect/SKILL.md
+    triggers:
+      - "state management"
+      - "too much Redux"
+      - "should I use Redux"
+      - "React Query setup"
+      - "Zustand vs Context"
+      - "how to manage state"
+    tags:
+      - architecture
+      - state-management
+      - react-query
+      - zustand
+    install_cmd: "bash -s -- state-management-architect"
+    source: "Adapted from Vercel composition-patterns skill"
+
+  - name: project-structure-manager
+    category: architecture
+    status: stable
+    description: >
+      Audits existing project structure for circular dependencies, god directories,
+      scattered domain logic, and module boundary violations. Produces a phased
+      migration plan with ESLint rules, path aliases, and naming conventions.
+    path: skills/architecture/project-structure-manager
+    skill_file: skills/architecture/project-structure-manager/SKILL.md
+    triggers:
+      - "audit project structure"
+      - "fix module boundaries"
+      - "organize the codebase"
+      - "find circular dependencies"
+      - "where should this file go"
+      - "project organization"
+    tags:
+      - architecture
+      - project-structure
+      - refactoring
+    install_cmd: "bash -s -- project-structure-manager"
+
+  # ── Research ──────────────────────────────────────────────────────────────
+
+  - name: associative-research
+    category: research
+    status: stable
+    description: >
+      Divergent research engine for cases where direct keyword search becomes
+      repetitive, SEO-heavy, or too narrow. Builds a concept map first, then
+      pivots across adjacent terminology, upstream/downstream views, and weak
+      signals to escape keyword traps and uncover non-obvious paths.
+    path: skills/research/associative-research
+    skill_file: skills/research/associative-research/SKILL.md
+    triggers:
+      - "搜不到"
+      - "没什么相关结果"
+      - "keyword trap"
+      - "research this"
+      - "do some research"
+      - "调研一下"
+    tags:
+      - research
+      - exploration
+      - discovery
+      - search
+    install_cmd: "bash -s -- associative-research"
+
+  - name: tech-stack-scout
+    category: research
+    status: stable
+    description: >
+      Researches technical options and implementation approaches from the user's
+      actual constraints, not popularity alone. Covers mainstream choices,
+      contrarian alternatives, production pitfalls, migration stories, and
+      recommendation output with explicit exclusion reasons.
+    path: skills/research/tech-stack-scout
+    skill_file: skills/research/tech-stack-scout/SKILL.md
+    triggers:
+      - "use X or Y"
+      - "tech stack research"
+      - "技术选型"
+      - "方案调研"
+      - "有没有比 X 更好的方案"
+      - "可行性调研"
+    tags:
+      - research
+      - technical-evaluation
+      - architecture
+      - tradeoffs
+    install_cmd: "bash -s -- tech-stack-scout"
+
+  - name: product-landscape
+    category: research
+    status: stable
+    description: >
+      Maps product and market landscapes from an engineer or indie-maker
+      perspective. Finds obvious and non-obvious competitors, substitutes,
+      open-source alternatives, user complaints, and whitespace opportunities
+      without getting trapped by existing category labels.
+    path: skills/research/product-landscape
+    skill_file: skills/research/product-landscape/SKILL.md
+    triggers:
+      - "product research"
+      - "market research"
+      - "有哪些竞品"
+      - "产品调研"
+      - "市场调研"
+      - "landscape"
+    tags:
+      - research
+      - product
+      - competition
+      - market
+    install_cmd: "bash -s -- product-landscape"
+
+  # ── Product Strategy ──────────────────────────────────────────────────────
+
+  - name: jobs-to-be-done
+    category: product-strategy
+    status: stable
+    description: >
+      Apply Christensen's JTBD framework to uncover why customers hire a product.
+      Covers job statement format (When/I want/So I can), Forces of Progress
+      (Push/Pull/Anxiety/Habit), Big vs Little Hire, non-obvious competition,
+      and switch interview protocol.
+    path: skills/product-strategy/jobs-to-be-done
+    skill_file: skills/product-strategy/jobs-to-be-done/SKILL.md
+    triggers:
+      - "why do customers use this"
+      - "jobs to be done"
+      - "JTBD"
+      - "what job does this product do"
+      - "why do users switch"
+      - "non-obvious competition"
+    tags:
+      - product-strategy
+      - customer-research
+      - positioning
+    install_cmd: "bash -s -- jobs-to-be-done"
+    source: "Based on wondelai/skills (MIT) + Christensen's Competing Against Luck"
+
+  - name: inspired-product
+    category: product-strategy
+    status: stable
+    description: >
+      Apply Marty Cagan's empowered product team model: dual-track discovery/delivery,
+      four product risks (value/usability/feasibility/viability), opportunity assessment
+      with 10 questions, product vision, and outcome-based OKRs.
+    path: skills/product-strategy/inspired-product
+    skill_file: skills/product-strategy/inspired-product/SKILL.md
+    triggers:
+      - "empowered product team"
+      - "product discovery"
+      - "dual track agile"
+      - "product risks"
+      - "opportunity assessment"
+      - "product OKRs"
+      - "product vision"
+    tags:
+      - product-strategy
+      - product-management
+      - discovery
+      - okr
+    install_cmd: "bash -s -- inspired-product"
+    source: "Based on wondelai/skills (MIT) + Marty Cagan's INSPIRED"
+
+  - name: obviously-awesome
+    category: product-strategy
+    status: stable
+    description: >
+      Apply April Dunford's 5-step positioning framework: competitive alternatives,
+      unique attributes, value themes, best-fit customers, and market category choice.
+      Produces a complete positioning canvas and positioning statement.
+    path: skills/product-strategy/obviously-awesome
+    skill_file: skills/product-strategy/obviously-awesome/SKILL.md
+    triggers:
+      - "product positioning"
+      - "how should we position this"
+      - "market category"
+      - "competitive positioning"
+      - "value proposition"
+      - "positioning statement"
+    tags:
+      - product-strategy
+      - positioning
+      - marketing
+    install_cmd: "bash -s -- obviously-awesome"
+    source: "Based on wondelai/skills (MIT) + April Dunford's Obviously Awesome"
+
+  # ── Product Discovery ─────────────────────────────────────────────────────
+
+  - name: mom-test
+    category: product-discovery
+    status: stable
+    description: >
+      Conduct customer interviews using Fitzpatrick's Mom Test rules: talk about their
+      life (not your idea), ask for specific past facts, listen rather than pitch,
+      and seek commitment over compliments. Includes conversation structure and question
+      templates for avoiding false validation.
+    path: skills/product-discovery/mom-test
+    skill_file: skills/product-discovery/mom-test/SKILL.md
+    triggers:
+      - "customer interview"
+      - "user interview"
+      - "validate my idea"
+      - "talk to customers"
+      - "customer discovery"
+      - "interview protocol"
+    tags:
+      - product-discovery
+      - customer-research
+      - interviews
+    install_cmd: "bash -s -- mom-test"
+    source: "Based on wondelai/skills (MIT) + Fitzpatrick's The Mom Test"
+
+  - name: continuous-discovery
+    category: product-discovery
+    status: stable
+    description: >
+      Run Teresa Torres's continuous discovery cadence: weekly customer touchpoints,
+      Opportunity Solution Trees (OST), assumption mapping and testing, and collaborative
+      discovery across PM/Design/Engineering. Weekly meeting template included.
+    path: skills/product-discovery/continuous-discovery
+    skill_file: skills/product-discovery/continuous-discovery/SKILL.md
+    triggers:
+      - "continuous discovery"
+      - "opportunity solution tree"
+      - "OST"
+      - "weekly discovery"
+      - "discovery cadence"
+      - "assumption testing"
+    tags:
+      - product-discovery
+      - customer-research
+      - agile
+    install_cmd: "bash -s -- continuous-discovery"
+    source: "Based on wondelai/skills (MIT) + Torres's Continuous Discovery Habits"
+
+  - name: user-personas
+    category: product-discovery
+    status: stable
+    description: >
+      Build evidence-calibrated user personas grounded in JTBD, behavioral research,
+      and real customer data. Includes data sourcing checklist, behavioral clustering,
+      full persona template with confidence levels, and anti-patterns to avoid.
+    path: skills/product-discovery/user-personas
+    skill_file: skills/product-discovery/user-personas/SKILL.md
+    triggers:
+      - "create user personas"
+      - "define our users"
+      - "user research personas"
+      - "who are our customers"
+      - "persona template"
+    tags:
+      - product-discovery
+      - ux
+      - customer-research
+    install_cmd: "bash -s -- user-personas"
+    source: "Based on phuryn/pm-skills (open source)"
+
+  # ── Requirements ──────────────────────────────────────────────────────────
+
+  - name: prd-writer
+    category: requirements
+    status: stable
+    description: >
+      Write a complete Product Requirements Document with structured problem framing,
+      success metrics, user stories, proposed solution, scope/phasing, risk table,
+      dependencies, and open questions. Clarifies scope upfront; saves to docs/prd/.
+    path: skills/requirements/prd-writer
+    skill_file: skills/requirements/prd-writer/SKILL.md
+    triggers:
+      - "write a PRD"
+      - "product requirements"
+      - "requirements document"
+      - "spec this feature"
+      - "document this feature"
+      - "PRD for"
+    tags:
+      - requirements
+      - product-management
+      - documentation
+    install_cmd: "bash -s -- prd-writer"
+    source: "Based on snarktank/ralph + github/awesome-copilot + phuryn/pm-skills"
+
+  - name: user-stories
+    category: requirements
+    status: stable
+    description: >
+      Write high-quality user stories using INVEST criteria and Given/When/Then
+      acceptance criteria. Covers story splitting techniques, the Epic→Feature→Story
+      hierarchy, story card template, and common anti-patterns.
+    path: skills/requirements/user-stories
+    skill_file: skills/requirements/user-stories/SKILL.md
+    triggers:
+      - "write user stories"
+      - "break this into stories"
+      - "acceptance criteria"
+      - "INVEST criteria"
+      - "user story template"
+      - "split this epic"
+    tags:
+      - requirements
+      - agile
+      - product-management
+    install_cmd: "bash -s -- user-stories"
+    source: "Based on phuryn/pm-skills + deanpeters/Product-Manager-Skills"
+
+  - name: feature-prioritization
+    category: requirements
+    status: stable
+    description: >
+      Apply RICE, ICE, Kano, MoSCoW, and Opportunity Scoring to prioritize features
+      objectively. Includes scoring tables for each framework, framework selection guide,
+      and prioritization meeting protocol.
+    path: skills/requirements/feature-prioritization
+    skill_file: skills/requirements/feature-prioritization/SKILL.md
+    triggers:
+      - "prioritize features"
+      - "RICE scoring"
+      - "MoSCoW"
+      - "what should we build next"
+      - "feature backlog"
+      - "roadmap prioritization"
+      - "Kano model"
+    tags:
+      - requirements
+      - prioritization
+      - product-management
+      - roadmap
+    install_cmd: "bash -s -- feature-prioritization"
+    source: "Based on phuryn/pm-skills + dhzrx/ai-pm-claude-skills"
+
+  # ── Product Design ────────────────────────────────────────────────────────
+
+  - name: lean-ux
+    category: product-design
+    status: stable
+    description: >
+      Apply Gothelf's Lean UX: declare assumptions, form hypothesis statements,
+      design minimum viable experiments (paper prototype → Wizard of Oz → A/B test),
+      run collaborative Design Studios, and integrate into dual-track Agile.
+      Includes the Lean UX Canvas.
+    path: skills/product-design/lean-ux
+    skill_file: skills/product-design/lean-ux/SKILL.md
+    triggers:
+      - "lean UX"
+      - "hypothesis-driven design"
+      - "test this assumption"
+      - "design experiment"
+      - "minimum viable experiment"
+      - "design studio"
+    tags:
+      - product-design
+      - ux
+      - lean
+      - hypothesis-testing
+    install_cmd: "bash -s -- lean-ux"
+    source: "Based on wondelai/skills (MIT) + Gothelf's Lean UX"
+
+  - name: design-sprint
+    category: product-design
+    status: stable
+    description: >
+      Run Jake Knapp's 5-day Design Sprint: Monday (map), Tuesday (sketch),
+      Wednesday (decide), Thursday (prototype), Friday (test with 5 users).
+      Full day-by-day activity schedule, team roles, interview script, and sprint report template.
+    path: skills/product-design/design-sprint
+    skill_file: skills/product-design/design-sprint/SKILL.md
+    triggers:
+      - "design sprint"
+      - "5-day sprint"
+      - "prototype and test"
+      - "validate before building"
+      - "GV sprint"
+      - "user testing sprint"
+    tags:
+      - product-design
+      - ux
+      - prototyping
+      - user-testing
+    install_cmd: "bash -s -- design-sprint"
+    source: "Based on wondelai/skills (MIT) + Knapp's Sprint"
+
+  - name: customer-journey-map
+    category: product-design
+    status: stable
+    description: >
+      Map the end-to-end customer experience across 7 stages (awareness→advocacy).
+      Identifies aha moment, churn triggers, pain points, and improvement opportunities.
+      Includes data sources per stage, facilitation workshop guide, and opportunity
+      priority matrix.
+    path: skills/product-design/customer-journey-map
+    skill_file: skills/product-design/customer-journey-map/SKILL.md
+    triggers:
+      - "customer journey"
+      - "journey map"
+      - "map the experience"
+      - "where do users drop off"
+      - "onboarding journey"
+      - "aha moment"
+      - "churn triggers"
+    tags:
+      - product-design
+      - ux
+      - customer-research
+      - retention
+    install_cmd: "bash -s -- customer-journey-map"
+    source: "Based on phuryn/pm-skills + wondelai/skills (MIT)"
+
+  # ── Meta / Skill Development ──────────────────────────────────────────────
+
+  - name: skill-creator
+    category: meta
+    status: stable
+    description: >
+      Create new skills, modify and improve existing skills, and measure skill
+      performance. Covers draft → eval → iterate loop with subagent-based test
+      runs, qualitative eval viewer, quantitative benchmarking, description
+      optimization via run_loop.py, and final packaging.
+    path: skills/meta/skill-creator
+    skill_file: skills/meta/skill-creator/SKILL.md
+    triggers:
+      - "create a skill"
+      - "make a skill"
+      - "write a skill"
+      - "improve this skill"
+      - "optimize skill description"
+      - "benchmark this skill"
+      - "skill creator"
+    tags:
+      - meta
+      - skill-development
+      - evals
+    install_cmd: "bash -s -- skill-creator"
+    source: "Anthropic official (anthropics/skills)"
+
+  - name: frontend-design
+    category: meta
+    status: stable
+    description: >
+      Create distinctive, production-grade frontend interfaces with high design
+      quality. Use when the user asks to build web components, pages, artifacts,
+      posters, or applications. Generates creative, polished code and UI design
+      that avoids generic AI aesthetics — commits to bold aesthetic direction,
+      uses distinctive typography, color, motion, and spatial composition.
+    path: skills/meta/frontend-design
+    skill_file: skills/meta/frontend-design/SKILL.md
+    triggers:
+      - "build a UI"
+      - "design this page"
+      - "create a landing page"
+      - "build a dashboard"
+      - "make this look good"
+      - "style this component"
+      - "web design"
+      - "frontend interface"
+    tags:
+      - ui
+      - design
+      - frontend
+      - aesthetics
+    install_cmd: "bash -s -- frontend-design"
+    source: "Anthropic official (anthropics/skills)"
+
+  - name: doc-coauthoring
+    category: meta
+    status: stable
+    description: >
+      Guide users through a structured 3-stage workflow for co-authoring
+      documents: Context Gathering (info dump + clarifying questions),
+      Refinement & Structure (section-by-section brainstorm → draft → iterate),
+      and Reader Testing (fresh Claude tests the doc to catch blind spots).
+      Use when user wants to write documentation, proposals, technical specs,
+      decision docs, PRDs, RFCs, or similar structured content.
+    path: skills/meta/doc-coauthoring
+    skill_file: skills/meta/doc-coauthoring/SKILL.md
+    triggers:
+      - "write a doc"
+      - "draft a proposal"
+      - "create a spec"
+      - "write up"
+      - "decision doc"
+      - "RFC"
+      - "design doc"
+      - "co-author"
+    tags:
+      - documentation
+      - writing
+      - collaboration
+    install_cmd: "bash -s -- doc-coauthoring"
+    source: "Anthropic official (anthropics/skills)"
